@@ -361,6 +361,36 @@ html[data-theme=light] .cl-tag{background-image:linear-gradient(90deg,var(--tb),
 .cl-link{font-size:30px;color:var(--mist);margin-top:44px}
 .cl-link b{font-family:var(--mono);font-weight:600;color:var(--link)}
 
+/* ---------- closing: speakers ---------- */
+.spk{position:absolute;left:110px;right:110px;top:250px;bottom:56px;display:grid;grid-template-columns:repeat(9,1fr);grid-auto-rows:1fr;gap:14px 16px}
+.spk .sp{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;gap:12px}
+.spk .av{width:120px;height:120px;font-size:42px}
+.spk .av::before{inset:-8px}
+.spk .nm{font-size:22px;font-weight:600;line-height:1.18;max-width:180px}
+
+/* ---------- closing: winners ---------- */
+.win{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:64px}
+.win .game{padding:34px 44px 22px}
+.wl{list-style:none;margin-top:18px}
+.wl li{display:grid;grid-template-columns:96px minmax(0,auto) 1fr;align-items:center;gap:24px;padding:20px 0;border-top:1.5px solid var(--card-line)}
+.wl li:first-child{border-top:0}
+.wl i{font-style:normal;width:86px;height:86px;border-radius:50%;background:var(--mc);color:#071226;text-shadow:none;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800}
+.wl i sup{font-size:.5em;vertical-align:.7em}
+.wl b{font-size:36px;font-weight:650;white-space:nowrap}
+.wl .who{height:44px;border-bottom:3px dashed var(--rule);margin-left:12px}
+.win-gad{margin:44px auto 0;width:max-content;font-size:34px;color:var(--mist);text-align:center;padding:16px 40px;border-radius:999px;background:var(--card);border:1.5px solid var(--card-line);text-shadow:none}
+.win-gad b{color:var(--ink);font-weight:700}
+
+/* ---------- closing: bye ---------- */
+#s-intro2{padding:0}
+#s-bye{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+#s-bye .gdg{margin-bottom:8px}
+.bye-h{font-size:200px}
+.bye-l{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:16px 20px;margin-top:50px;max-width:1500px}
+.bye-l li{display:flex;align-items:center;gap:14px;font-size:34px;font-weight:600;padding:14px 28px;border-radius:999px;background:var(--card);border:1.5px solid var(--card-line);text-shadow:none}
+.bye-l li::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--dc)}
+.bye-tag{font-size:88px;margin-top:64px}
+
 /* ---------- chrome ---------- */
 #prog{position:fixed;left:0;bottom:0;height:3px;width:0;background:var(--b);transition:width .8s var(--ease),background .8s;z-index:20;opacity:.85}
 #count{position:absolute;right:128px;top:48px;font-size:20px;color:var(--dim);font-variant-numeric:tabular-nums}
@@ -732,6 +762,128 @@ html[data-theme=light] .cl-tag{background-image:linear-gradient(90deg,var(--tb),
     <aside class="notes">Close — feedback QR + hashtag. Everything about GDG Venezia (meetups, socials, chat) is on gdgvenezia.it. Keep this on screen while people move to the first talks.</aside>
   </section>
 
+  <!-- ================= CLOSING KEYNOTE ================= -->
+
+  <!-- C1 · Closing title -->
+  <section class="slide" id="s-intro2" data-cam="intro2" data-title="Closing keynote title">
+    <div class="intro-title">
+      <div class="gdg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="h-xl k">DevFest</div>
+      <div class="intro-sub k">Venezia 2026</div>
+    </div>
+    <div class="intro-refl" aria-hidden="true">
+      <div class="gdg"><i></i><i></i><i></i><i></i></div>
+      <div class="h-xl k">DevFest</div>
+      <div class="intro-sub k">Venezia 2026</div>
+    </div>
+    <div class="intro-date r"><strong>Closing keynote</strong><br>Saturday 24 October 2026 · Campus Scientifico, Università Ca' Foscari, Mestre</div>
+    <aside class="notes">Closing keynote (17:10–17:30). Let the title land while people come back into the room. Then: sponsors, speakers, feedback, prizes, goodbye.</aside>
+  </section>
+
+  <!-- C2 · Sponsors (again) -->
+  <section class="slide" id="s-sponsors2" data-cam="sponsors2" data-title="Sponsors (closing)">
+    <h2 class="h-l k">Thank you, sponsors</h2>
+    <div class="sp-wrap">
+      <div class="sp-main">
+        <div class="sp-tier r">Main sponsor</div>
+        <div class="plate" style="--d:.5s"><img src="assets/sponsors/google.svg" alt="Google"></div>
+        <div class="sp-tier r" style="margin-top:20px">Partners</div>
+        <div class="sp-part"></div>
+      </div>
+      <div>
+        <div class="sp-tier r" style="margin-bottom:26px">Sponsors</div>
+        <div class="sp-grid"></div>
+      </div>
+    </div>
+    <aside class="notes">Thank the sponsors once more: none of today (venue setup, food, coffee, prizes, T-shirts) happens without them. Shoutout to Google as main sponsor and to the partners: Ca' Foscari, Marca User Group, Coding Gym, CoderDojo Zero Branco.</aside>
+  </section>
+
+  <!-- C3 · Speakers -->
+  <section class="slide" id="s-speakers" data-cam="speakers" data-title="Thank you, speakers">
+    <h2 class="h-m k">Thank you, speakers</h2>
+    <div class="spk" id="spk"></div>
+    <aside class="notes">Thank all the speakers (list and photos from the devfest26 website). Many travelled from abroad, all of them volunteered their time. Ask the room for a big round of applause; if speakers are in the room, ask them to stand up.</aside>
+  </section>
+
+  <!-- C4 · Speaker feedback (again) -->
+  <section class="slide" id="s-spkfb2" data-cam="spkfb2" data-title="Speaker feedback (closing)">
+    <div class="cl-grid">
+      <div>
+        <h2 class="h-l k">Feedback for<br>the speakers</h2>
+        <p class="lead r" style="margin-top:44px">Didn't rate the talks yet? Do it now: a rating and a few words really help the speakers.</p>
+      </div>
+      <div>
+        <div class="qr" aria-label="QR code: speaker feedback form">
+          <img src="assets/speaker-feedback-qr.svg" alt="QR code linking to the speaker feedback form">
+          <i class="cn"></i><i class="cn"></i><i class="cn"></i><i class="cn"></i>
+        </div>
+        <div class="qr-cap r">Rate the talks<br>openfeedback.io</div>
+      </div>
+    </div>
+    <aside class="notes">Speaker feedback — last call: rate the talks you attended. Give people time to scan. (QR → https://openfeedback.io/BLKfpVftjylgOi1Dssd3)</aside>
+  </section>
+
+  <!-- C5 · General feedback -->
+  <section class="slide" id="s-feedback2" data-cam="feedback2" data-title="Event feedback">
+    <div class="cl-grid">
+      <div>
+        <h2 class="h-l k">How was<br>today?</h2>
+        <p class="lead r" style="margin-top:44px">Two minutes of feedback help us make DevFest Venezia 2027 even better.</p>
+        <div class="cl-tag k" style="margin-top:56px">#DevFestVenezia2026</div>
+      </div>
+      <div>
+        <div class="qr" aria-label="QR code: forms.gle/4hQzEtTF3Z6XX5VKA">
+          <img src="assets/feedback-qr.svg" alt="QR code linking to https://forms.gle/4hQzEtTF3Z6XX5VKA">
+          <i class="cn"></i><i class="cn"></i><i class="cn"></i><i class="cn"></i>
+        </div>
+        <div class="qr-cap r">forms.gle/4hQzEtTF3Z6XX5VKA</div>
+      </div>
+    </div>
+    <aside class="notes">Event feedback form: ask everyone to fill it in now, before leaving (2 minutes). Keep it on screen a bit longer. (QR → https://forms.gle/4hQzEtTF3Z6XX5VKA)</aside>
+  </section>
+
+  <!-- C6 · Winners -->
+  <section class="slide" id="s-winners" data-cam="winners" data-title="Contest winners">
+    <h2 class="h-m k">And the winners are…</h2>
+    <div class="win">
+      <div class="game r" style="--gc:var(--b);--gt:var(--tb)">
+        <h3>Wikipedia Speedrun</h3>
+        <ol class="wl">
+          <li style="--mc:var(--y)"><i>1<sup>st</sup></i><b>Lego Game Boy</b><span class="who" aria-hidden="true"></span></li>
+          <li style="--mc:var(--b)"><i>2<sup>nd</sup></i><b>Instant camera</b><span class="who" aria-hidden="true"></span></li>
+          <li style="--mc:var(--g)"><i>3<sup>rd</sup></i><b>Google backpack</b><span class="who" aria-hidden="true"></span></li>
+        </ol>
+      </div>
+      <div class="game r" style="--gc:var(--y);--gt:var(--ty)">
+        <h3>Typing race</h3>
+        <ol class="wl">
+          <li style="--mc:var(--y)"><i>1<sup>st</sup></i><b>Lego Game Boy</b><span class="who" aria-hidden="true"></span></li>
+          <li style="--mc:var(--b)"><i>2<sup>nd</sup></i><b>Instant camera</b><span class="who" aria-hidden="true"></span></li>
+          <li style="--mc:var(--g)"><i>3<sup>rd</sup></i><b>Google backpack</b><span class="who" aria-hidden="true"></span></li>
+        </ol>
+      </div>
+    </div>
+    <p class="win-gad r">Plus <b>gadgets</b> to give away. When we call your name, come up to the stage!</p>
+    <aside class="notes">Prize giving. Names are NOT on the slide: read them from your list, 3rd → 2nd → 1st for each contest (Wikipedia Speedrun first, then Typing race), and invite each winner on stage for the prize and a photo. Then hand out the gadgets.</aside>
+  </section>
+
+  <!-- C7 · Final thank-you -->
+  <section class="slide" id="s-bye" data-cam="bye" data-title="Thank you & see you in 2027">
+    <div class="gdg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <h2 class="h-xl k bye-h">Thank you!</h2>
+    <ul class="bye-l">
+      <li class="r" style="--dc:var(--b)">the organizing team</li>
+      <li class="r" style="--dc:var(--r)">our volunteers</li>
+      <li class="r" style="--dc:var(--y)">Università Ca' Foscari</li>
+      <li class="r" style="--dc:var(--g)">sponsors &amp; partners</li>
+      <li class="r" style="--dc:var(--b)">all the speakers</li>
+      <li class="r" style="--dc:var(--r)">and all of you</li>
+    </ul>
+    <div class="cl-tag k bye-tag">See you at DevFest 2027</div>
+    <p class="cl-link r" style="margin-top:30px">Stay in touch: <b>gdgvenezia.it</b></p>
+    <aside class="notes">Final thanks: team, volunteers, Ca' Foscari (venue), sponsors and partners, speakers, and everyone who came. Invite people to the next GDG Venezia meetups (gdgvenezia.it). See you at DevFest 2027! Leave this on screen while people leave.</aside>
+  </section>
+
   <div id="count"></div>
 </div>
 
@@ -774,6 +926,8 @@ var SPONSORS = [['Aton','aton.webp'],['beanTech','beantech.png'],['Confindustria
   ['NTT DATA','nttdata.png'],['Ordine Ingegneri Venezia','ordineingegneri.webp'],['Prometea Pixel','prometea.png'],['Targa Telematics','targatelematics.png'],
   ['UNOX','unox.png'],['Vimar','vimar.jpg'],['Arsenalia','arsenalia.png'],['Galdi','galdi.png']];
 var PARTNERS = [['Università Ca’ Foscari Venezia','unive.webp'],['Marca User Group','mug.png'],['Coding Gym','coding-gym.png'],['CoderDojo Zero Branco','coderjo.png']];
+// all speakers from the devfest26 website repo (GDG-Venezia/devfest26, content/speakers, 24 Oct 2026)
+var SPEAKERS = [['Alessandro D’Angelo','alessandro-dangelo.webp'],['Alessandro Pezzato','alessandro-pezzato.webp'],['Alessia Bragagnolo','alessia-bragagnolo.webp'],['Alfredo Bautista Santos','alfredo-bautista-santos.webp'],['Ankur Roy','ankur-roy.webp'],['Ceren Özgür','ceren-ozgur.webp'],['Daniel Chenet','daniel-chenet.webp'],['Daniele Bonaldo','daniele-bonaldo.webp'],['Daniele De Marchi','daniele-de-marchi.webp'],['Davide Bellone','davide-bellone.webp'],['Dominika Zając','dominika-zajac.webp'],['Fabian Krumbholz','fabian-krumbholz.webp'],['Gabriel Palmisano','gabriel-palmisano.webp'],['Giorgio Basile','giorgio-basile.webp'],['Giulia Scalaberni','giulia-scalaberni.webp'],['Israel Blancas','israel-blancas.webp'],['István Juhos','istvan-juhos.webp'],['Ivan Morgillo','ivan-morgillo.webp'],['Leonardo Gazzola','leonardo-gazzola.webp'],['Luca Del Puppo','luca-del-puppo.webp'],['Luca Raveri','luca-raveri.webp'],['Luiz Carneiro','luiz-carneiro.webp'],['Marco Biondo','marco-biondo.webp'],['Matteo Valerio','matteo-valerio.webp'],['Nejmeddine Ben Ouarred','nejmeddine-ben-ouarred.webp'],['Pietro Bonaventura','pietro-bonaventura.webp'],['Rachele Bari','rachele-bari.webp'],['Rainer Hahnekamp','rainer-hahnekamp.webp'],['Rebecca Frisoni','rebecca-frisoni.webp'],['Roberto Mazzocato','roberto-mazzocato.webp'],['Rowdy Rabouw','rowdy-rabouw.webp'],['Soumaya Erradi','soumaya-erradi.webp'],['Susanna Wong','susanna-wong.webp'],['Tarik Huber','tarik-huber.webp']];
 var ROOMS = [
   {track:'Prosecco', room:'Auditorium · Danilo Mainardi', c:GC.y},
   {track:'Spritz',   room:'Sala conferenze · Gabriele Zanetto', c:GC.r},
@@ -827,18 +981,32 @@ function el(tag, attrs, parent, ns){
     el('div',{'class':'nm',html: clean + (prof?'<small>Prof.</small>':'')},mate);
   });
 })();
-// sponsors
+// sponsors (opening + closing slides)
 (function(){
-  var g=$('#sp-grid');
+  $$('.sp-grid').forEach(function(g){
   SPONSORS.forEach(function(s,i){
     var row=Math.floor(i/4), col=i%4;
     var p=el('div',{'class':'plate'},g); p.style.setProperty('--d',(0.7+(row+col)*0.11)+'s');
     el('img',{src:'assets/sponsors/'+s[1], alt:s[0]},p);
   });
-  var pg=$('#sp-part');
+  });
+  $$('.sp-part').forEach(function(pg){
   PARTNERS.forEach(function(s,i){
     var p=el('div',{'class':'plate'},pg); p.style.setProperty('--d',(0.8+i*0.11)+'s'); p.style.setProperty('--px','30px'); p.style.setProperty('--py','16px');
     el('img',{src:'assets/partners/'+s[1], alt:s[0]},p);
+  });
+  });
+})();
+// speakers (closing): name + photo in assets/speakers/, from the devfest26 website repo (content/speakers)
+(function(){
+  var t=$('#spk'), cls=['cb','cr','cy','cg'];
+  SPEAKERS.forEach(function(m,i){
+    var row=Math.floor(i/9), col=i%9;
+    var sp=el('div',{'class':'sp'},t);
+    var av=el('div',{'class':'av '+cls[(i+row)%4],text:m[0].split(' ').map(function(w){return w[0]}).join('').slice(0,2)},sp);
+    av.style.setProperty('--d',(0.4+(row+col)*0.07)+'s');
+    var im=el('img',{src:'assets/speakers/'+m[1],alt:m[0]},av); im.onerror=function(){ im.remove(); };
+    var nm=el('div',{'class':'nm r',text:m[0]},sp); nm.style.setProperty('--d',(0.6+(row+col)*0.07)+'s');
   });
 })();
 // map
@@ -1182,7 +1350,14 @@ var POSES={
   delivery:pose([-6,3.4,40],2,880),
   tshirt:pose([-12,4,38],4,900),
   spkfb:pose([4,3,50],0,900),
-  close:pose([0,2.4,40],0,910)
+  close:pose([0,2.4,40],0,910),
+  intro2:pose([0,2.4,40],0,540),
+  sponsors2:pose([-16,6,40],-2,860),
+  speakers:pose([8,6,48],0,1010),
+  spkfb2:pose([-4,3,50],0,900),
+  feedback2:pose([6,2.6,42],0,910),
+  winners:pose([-6,3.2,32],0,830),
+  bye:pose([0,3,46],0,990)
 };
 // assign reveal delays in DOM order
 slides.forEach(function(s){
@@ -1261,6 +1436,7 @@ window.addEventListener('resize',fit); fit();
 HOOKS['s-intro']={enter:function(){
   GL.lamps.forEach(function(L,i){ if(i<8){ L.on=false; L.k=0; setTimeout(function(){ if(slides[cur].id==='s-intro'||cur>0) L.on=true; }, 900+i*260); } });
 }};
+HOOKS['s-intro2']=HOOKS['s-intro'];
 
 /* ---- video ---- */
 var vid=$('#vid'), vplay=$('#vplay'), vbar=$('#vbar');
