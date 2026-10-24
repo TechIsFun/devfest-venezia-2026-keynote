@@ -730,7 +730,7 @@ html[data-theme=light] .cl-tag{background-image:linear-gradient(90deg,var(--tb),
 <div id="zones"><div id="z-prev"></div><div id="z-next"></div></div>
 <div id="prog"></div>
 <div id="notes"><div class="nt" id="nt"></div><div class="meta" id="nmeta"></div></div>
-<div id="hint">→ / space next · ← back · N notes · F fullscreen · R replay · P video · T theme</div>
+<div id="hint">→ / space next · ← back · N notes · F fullscreen · R replay · P video · T theme · D download zip</div>
 <button id="themebtn" type="button" aria-label="Toggle light/dark theme">◐ Dark theme · T</button>
 
 <script src="three.min.js"></script>
@@ -1224,6 +1224,9 @@ function fullscreen(){
   if (!(d.fullscreenElement||d.webkitFullscreenElement)) (e.requestFullscreen||e.webkitRequestFullscreen).call(e);
   else (d.exitFullscreen||d.webkitExitFullscreen).call(d);
 }
+// D: download the whole deck as a zip (GitHub archive of the published repo)
+var DECK_ZIP='https://github.com/TechIsFun/devfest-venezia-2026-keynote/archive/refs/heads/main.zip';
+function downloadZip(){ var a=document.createElement('a'); a.href=DECK_ZIP; a.download='devfest-venezia-2026-keynote.zip'; document.body.appendChild(a); a.click(); a.remove(); }
 document.addEventListener('keydown',function(e){
   if (e.metaKey||e.ctrlKey||e.altKey) return;
   var k=e.key;
@@ -1234,6 +1237,7 @@ document.addEventListener('keydown',function(e){
   else if (k==='f'||k==='F') fullscreen();
   else if (k==='r'||k==='R') go(cur,true);
   else if (k==='t'||k==='T') toggleTheme();
+  else if (k==='d'||k==='D') downloadZip();
   else if ((k==='p'||k==='P'||k==='Enter') && slides[cur].id==='s-video'){ toggleVid(); e.preventDefault(); }
 });
 $('#z-prev').addEventListener('click',function(){go(cur-1)});
