@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DevFest Venezia 2026 — Opening Keynote</title>
+<script>try{if(localStorage.getItem('devfest26-theme')==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}</script>
+<style>
+/* Open Sans (variable: wght 300-800, wdth 75-100), local copies for offline use */
+@font-face{font-family:'OS';src:url(assets/opensans-latin.woff2) format('woff2');font-weight:300 800;font-stretch:75% 100%;font-display:block;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;}
+@font-face{font-family:'OS';src:url(assets/opensans-latinext.woff2) format('woff2');font-weight:300 800;font-stretch:75% 100%;font-display:block;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+@font-face{font-family:'OS';src:url(assets/opensans-math.woff2) format('woff2');font-weight:300 800;font-stretch:75% 100%;font-display:block;
+  unicode-range:U+2190,U+2192,U+2194-21AE;}
+@font-face{font-family:'JBM';src:url(assets/jbmono-latin.woff2) format('woff2');font-weight:400 700;font-display:block;}
+
+:root{
+  --b:#4285F4; --r:#EA4335; --y:#FBBC04; --g:#34A853;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --sans:'OS','Open Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'JBM',ui-monospace,Menlo,monospace;
+  /* theme: dark (default) */
+  --deep:#020814; --ink:#EAF2FF; --mist:#A3B6D6; --dim:#6F84AA; --link:#8AB4F8; --warn:#F6C35A;
+  --tb:#8AB4F8; --tr:#F28B82; --ty:#FDD663; --tg:#81C995;                 /* Google colours for text */
+  --room0:#FBBC04; --room1:#EA4335; --room2:#C9D6EE; --room3:#F0A070; --room4:#34A853;
+  --tshadow:0 2px 28px rgba(2,8,20,.55);
+  --card:rgba(6,18,38,.72); --card-line:rgba(234,242,255,.18); --pill:rgba(2,8,20,.55); --pill-line:rgba(234,242,255,.3);
+  --hair:rgba(234,242,255,.05); --rule:rgba(234,242,255,.35); --track:rgba(234,242,255,.08); --node:#061226;
+  --plate-line:transparent; --qr-shadow:0 40px 120px -30px rgba(66,133,244,.55);
+  --panel:rgba(2,8,20,.92); --panel-line:rgba(234,242,255,.15);
+  --vig:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(1,4,12,.65) 100%);
+}
+html[data-theme=light]{
+  --deep:#F6F8FB; --ink:#0B1320; --mist:#2F3D55; --dim:#4F5F7A; --link:#1A56C4; --warn:#8A5300;
+  --tb:#1A5FD0; --tr:#C5221F; --ty:#9A5B00; --tg:#137333;
+  --room0:#9A5B00; --room1:#C5221F; --room2:#3D4F6E; --room3:#A8481A; --room4:#137333;
+  --tshadow:none;
+  --card:rgba(255,255,255,.94); --card-line:rgba(11,19,32,.28); --pill:#fff; --pill-line:rgba(11,19,32,.3);
+  --hair:rgba(11,19,32,.07); --rule:rgba(11,19,32,.45); --track:rgba(11,19,32,.08); --node:#FFFFFF;
+  --plate-line:rgba(11,19,32,.22); --qr-shadow:0 0 0 2px rgba(11,19,32,.18),0 24px 60px -30px rgba(11,19,32,.35);
+  --panel:rgba(246,248,251,.97); --panel-line:rgba(11,19,32,.2);
+  --vig:linear-gradient(rgba(246,248,251,.62),rgba(246,248,251,.62)),radial-gradient(120% 90% at 50% 45%,transparent 50%,rgba(246,248,251,.7) 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--deep);overflow:hidden;color:var(--ink);font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;font-optical-sizing:auto;font-stretch:100%}
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block}
+#vig{position:fixed;inset:0;pointer-events:none;background:var(--vig)}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;margin:-540px 0 0 -960px;transform-origin:50% 50%}
+
+/* ---------- slides & choreography ---------- */
+.slide{position:absolute;inset:0;padding:110px 128px;visibility:hidden;pointer-events:none;text-shadow:var(--tshadow)}
+.slide.in,.slide.out{visibility:visible}
+.slide.in{pointer-events:auto}
+.r{opacity:0;transform:translate3d(0,46px,0);filter:blur(10px);
+  transition:opacity .9s var(--ease),transform 1.2s var(--ease),filter .9s var(--ease);transition-delay:var(--d,0s)}
+.slide.in .r{opacity:1;transform:none;filter:none}
+.slide.out .r{opacity:0;transform:translate3d(0,-28px,0);filter:blur(8px);transition-duration:.45s;transition-delay:0s}
+
+/* kinetic headline: chars rise out of their own waterline (transform + opacity only, normal width) */
+.k .w{display:inline-block;white-space:nowrap;padding:.06em 0 .14em;margin:-.06em 0 -.14em;
+  clip-path:inset(-60% -30% 0 -30%)}
+.k .c{display:inline-block;transform:translate3d(0,112%,0) rotate(6deg);opacity:0;
+  transition:transform 1.1s var(--ease),opacity .7s var(--ease);transition-delay:var(--d,0s)}
+.slide.in .k .c{transform:none;opacity:1}
+.slide.out .k .c{transform:translate3d(0,-115%,0);opacity:0;transition-duration:.5s;transition-delay:0s}
+
+.h-xl{font-size:240px;font-weight:800;line-height:.95;letter-spacing:-.01em}
+.h-l{font-size:122px;font-weight:750;line-height:1.02;letter-spacing:-.005em}
+.h-m{font-size:92px;font-weight:720;line-height:1.05;letter-spacing:0}
+.lead{font-size:36px;line-height:1.4;font-weight:400;color:var(--ink);max-width:32ch}
+.body{font-size:30px;line-height:1.45;font-weight:400;color:var(--mist);max-width:44ch}
+.mist{color:var(--mist)}
+.mono{font-family:var(--mono)}
+.tbd{position:absolute;left:128px;bottom:44px;display:flex;gap:14px;align-items:baseline;font-size:20px;color:var(--warn);
+  max-width:1500px;line-height:1.35}
+.tbd b{flex:none;font-weight:800;font-size:15px;letter-spacing:.06em;padding:4px 10px 3px;border:1.5px solid var(--warn);border-radius:6px;transform:translateY(-2px)}
+.notes{display:none}
+
+/* ---------- odometer ---------- */
+.odo{display:inline-flex;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.odo .dg{display:inline-block;height:1em;overflow:hidden}
+.odo .st{display:flex;flex-direction:column}
+.odo .st span{display:block;height:1em;line-height:1em;text-align:center}
+
+/* ---------- 0 intro ---------- */
+#s-intro{padding:0}
+.intro-title{position:absolute;left:0;right:0;bottom:540px;text-align:center}
+.intro-refl{position:absolute;left:0;right:0;top:540px;text-align:center;transform:scaleY(-1);transform-origin:50% 50%;
+  opacity:.24;filter:blur(1.5px) url(#ripple);
+  -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 55%);mask-image:linear-gradient(to top,rgba(0,0,0,.9),transparent 55%);
+  animation:wob 5s ease-in-out infinite}
+@keyframes wob{0%,100%{transform:scaleY(-1)}50%{transform:scale(1.008,-.965)}}
+.gdg{width:250px;height:120px;margin:0 auto 26px;position:relative}
+.gdg i{position:absolute;width:118px;height:40px;border-radius:20px;opacity:0;
+  transition:transform 1.3s var(--ease),opacity .6s;transition-delay:var(--d)}
+.gdg i:nth-child(1){left:8px;top:16px;background:var(--r);transform:translate(-160px,-60px) rotate(-35deg);--d:.15s}
+.gdg i:nth-child(2){left:8px;top:64px;background:var(--b);transform:translate(-160px,60px) rotate(35deg);--d:.3s}
+.gdg i:nth-child(3){right:8px;top:16px;background:var(--g);transform:translate(160px,-60px) rotate(35deg);--d:.45s}
+.gdg i:nth-child(4){right:8px;top:64px;background:var(--y);transform:translate(160px,60px) rotate(-35deg);--d:.6s}
+.slide.in .gdg i{opacity:1}
+.slide.in .gdg i:nth-child(1){transform:rotate(-35deg) translate(0,0)}
+.slide.in .gdg i:nth-child(2){transform:rotate(35deg)}
+.slide.in .gdg i:nth-child(3){transform:rotate(35deg)}
+.slide.in .gdg i:nth-child(4){transform:rotate(-35deg)}
+.slide.out .gdg i{opacity:0;transition-duration:.4s;transition-delay:0s}
+.intro-sub{font-size:84px;font-weight:500;letter-spacing:0;margin-top:6px}
+.intro-date{position:absolute;left:0;right:0;bottom:92px;text-align:center;font-size:30px;font-weight:400;color:var(--mist);line-height:1.5}
+.intro-date strong{color:var(--ink);font-weight:620}
+
+/* ---------- 1 video ---------- */
+#s-video{padding:0}
+.vframe{position:absolute;inset:0;background:#000;overflow:hidden;clip-path:inset(20% 24% round 36px);
+  transition:clip-path 1.5s var(--ease)}
+.slide.in .vframe{clip-path:inset(0 round 0)}
+.slide.out .vframe{clip-path:inset(20% 24% round 36px);transition-duration:.6s}
+.vframe video{width:100%;height:100%;object-fit:cover;display:block}
+.vplay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+  background:radial-gradient(60% 60% at 50% 50%,rgba(2,8,20,.25),rgba(2,8,20,.75));cursor:pointer;transition:opacity .5s}
+.vplay.hide{opacity:0;pointer-events:none}
+.vbtn{width:180px;height:180px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(234,242,255,.1);border:2px solid rgba(234,242,255,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.vbtn svg{margin-left:12px}
+.vcap{font-size:32px;font-weight:500;text-align:center;line-height:1.4;color:#EAF2FF;text-shadow:0 2px 20px rgba(0,0,0,.6)}
+.vcap span{display:block;font-size:22px;color:#C4D2EA;font-weight:400}
+.vbar{position:absolute;left:0;bottom:0;height:5px;width:0;background:linear-gradient(90deg,var(--b),var(--r),var(--y),var(--g))}
+.vfallback{display:none;position:absolute;inset:0;align-items:center;justify-content:center;flex-direction:column;gap:20px;
+  background:rgba(2,8,20,.8);color:#EAF2FF;font-size:30px;text-align:center}
+.vfallback a{color:#8AB4F8;font-size:28px}
+.vfallback.show{display:flex}
+
+/* ---------- 2 welcome ---------- */
+.wel-meta{display:flex;gap:120px;margin-top:54px}
+.stats{position:absolute;left:128px;right:128px;bottom:96px;display:flex;align-items:flex-end;gap:50px}
+.stat{display:flex;flex-direction:column;gap:12px}
+.stat .n{font-size:100px;font-weight:750;letter-spacing:-.01em}
+.stat .l{font-size:26px;color:var(--mist);font-weight:400;white-space:nowrap}
+.stat.big .n{font-size:220px;font-weight:800;letter-spacing:-.01em;margin-bottom:-.11em;color:var(--ink)}
+.stat.big .odo .dg{height:1em}
+.stat.big .l{font-size:34px;color:var(--ink)}
+.stat .sw{display:inline-block;width:14px;height:14px;border-radius:50%;margin-right:12px;transform:translateY(-1px)}
+.stat.lang .n{font-size:72px;white-space:nowrap}
+
+/* ---------- 3 commit graph ---------- */
+#cg-svg{position:absolute;inset:0;width:1920px;height:1080px;overflow:visible}
+#cg-svg text{font-family:var(--sans)}
+#cg-svg .hash{font-family:var(--mono);font-size:22px;font-weight:500}
+.cg-term{font-family:var(--mono);font-size:24px;color:var(--mist);margin-top:30px;min-height:32px}
+.cg-term .cur{display:inline-block;width:.6em;height:1.05em;background:var(--ink);vertical-align:-.15em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.cg-big{position:absolute;right:128px;top:104px;text-align:right}
+.cg-big .odo{font-size:160px;font-weight:800;letter-spacing:-.01em}
+.cg-big .l{font-size:28px;color:var(--mist)}
+
+/* ---------- 5 GDG ---------- */
+.gdg-grid{display:grid;grid-template-columns:minmax(0,1fr) 680px;gap:80px;height:100%}
+.verbs{display:flex;flex-direction:column;justify-content:center;gap:4px}
+.verb{font-size:128px;font-weight:800;line-height:1.05;letter-spacing:-.01em;white-space:nowrap}
+.verb:nth-child(1){color:var(--b)} .verb:nth-child(2){color:var(--r)} .verb:nth-child(3){color:var(--y)}
+html[data-theme=light] .verb:nth-child(1){color:var(--tb)} html[data-theme=light] .verb:nth-child(2){color:var(--tr)} html[data-theme=light] .verb:nth-child(3){color:var(--ty)}
+.involve{margin-top:64px;display:grid;grid-template-columns:auto 1fr;gap:18px 34px;font-size:30px;align-items:baseline}
+.involve dt{color:var(--mist);font-size:24px}
+.involve dd{font-weight:600}
+.involve dd.url{font-family:var(--mono);color:var(--link);font-size:32px;font-weight:600}
+.gdg-find{display:flex;gap:44px;align-items:center;margin-top:56px}
+.gdg-find .involve{margin-top:0}
+.qr.xs{width:220px;height:220px;padding:20px;border-radius:20px;flex:none}
+.qr.xs .cn{width:34px;height:34px;border-width:6px}
+.qr.xs .cn:nth-of-type(n){left:auto;right:auto;top:auto;bottom:auto}
+.qr.xs .cn:nth-of-type(1){left:-12px;top:-12px}.qr.xs .cn:nth-of-type(2){right:-12px;top:-12px}.qr.xs .cn:nth-of-type(3){left:-12px;bottom:-12px}.qr.xs .cn:nth-of-type(4){right:-12px;bottom:-12px}
+
+/* ---------- 6 team ---------- */
+.team{position:absolute;left:128px;right:128px;top:440px;display:grid;grid-template-columns:repeat(4,1fr);gap:62px 40px}
+.mate{display:flex;align-items:center;gap:28px}
+.av{position:relative;width:132px;height:132px;flex:none;border-radius:50%;display:grid;place-items:center;
+  font-size:50px;font-weight:750;color:#fff;
+  transform:scale(.2) rotate(-40deg);opacity:0;transition:transform 1.2s cubic-bezier(.34,1.56,.64,1),opacity .5s;transition-delay:var(--d)}
+.av::before{content:"";position:absolute;inset:-12px;border-radius:50%;border:2px solid currentColor;opacity:.0;transform:scale(.8);
+  transition:transform 1.4s var(--ease),opacity 1.4s;transition-delay:calc(var(--d) + .3s);color:inherit}
+.slide.in .av{transform:none;opacity:1}
+.slide.in .av::before{opacity:.45;transform:none}
+.slide.out .av{opacity:0;transform:scale(.6);transition-duration:.4s;transition-delay:0s}
+.av.cb{background:var(--b)} .av.cr{background:var(--r)} .av.cy{background:var(--y);color:#1d1600} .av.cg{background:var(--g)}
+.av.cb::before{border-color:var(--b)} .av.cr::before{border-color:var(--r)} .av.cy::before{border-color:var(--y)} .av.cg::before{border-color:var(--g)}
+.av img{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.mate .nm{font-size:32px;font-weight:620;line-height:1.15}
+.mate .nm small{display:block;font-size:22px;font-weight:400;color:var(--mist)}
+
+/* ---------- 7 rector ---------- */
+#s-rector,#s-luccio,#s-alexis{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.rec-kicker{font-size:34px;color:var(--mist);margin-bottom:34px}
+.rec-name{background:var(--pill);margin-top:64px;font-size:42px;font-weight:400;color:var(--mist);padding:18px 44px;border-radius:999px;border:1.5px solid var(--pill-line)}
+.rec-name b{font-weight:640;color:var(--ink)}
+
+/* ---------- 8 sponsors ---------- */
+.sp-wrap{display:grid;grid-template-columns:560px 1fr;gap:80px;margin-top:64px;align-items:start}
+.sp-main{display:flex;flex-direction:column;gap:26px}
+.sp-main .plate{height:260px;--px:70px;--py:60px}
+.sp-tier{font-size:26px;color:var(--mist)}
+.sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;perspective:1600px}
+.plate{position:relative;height:122px;border-radius:18px;background:#F4F7FD;box-shadow:inset 0 0 0 1.5px var(--plate-line);display:grid;place-items:center;padding:20px 26px;overflow:hidden;
+  transform:rotateX(-92deg);transform-origin:50% 0;opacity:0;transition:transform 1.1s var(--ease),opacity .4s;transition-delay:var(--d)}
+.plate img{position:absolute;left:var(--px,26px);top:var(--py,20px);width:calc(100% - 2*var(--px,26px));height:calc(100% - 2*var(--py,20px));object-fit:contain;display:block}
+.plate::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.95) 50%,transparent 65%);
+  transform:translateX(-120%);animation:sheen 7s var(--ease) infinite;animation-delay:calc(var(--d) + 2s)}
+@keyframes sheen{0%{transform:translateX(-120%)}18%,100%{transform:translateX(120%)}}
+.slide.in .plate{transform:none;opacity:1}
+.slide.out .plate{opacity:0;transform:rotateX(70deg);transition-duration:.45s;transition-delay:0s}
+.sp-part{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;perspective:1600px}
+.sp-part .plate{height:104px}
+
+/* ---------- 9 map ---------- */
+#map-svg{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#map-svg .ln{fill:none;stroke-width:14;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s var(--ease) .5s}
+.slide.in #map-svg .ln{stroke-dashoffset:0}
+.slide.out #map-svg .ln{transition-duration:.4s;transition-delay:0s}
+#map-svg .stop{opacity:0;transform:scale(0);transform-box:fill-box;transform-origin:50% 50%;transition:transform 1s cubic-bezier(.34,1.56,.64,1),opacity .3s;transition-delay:var(--d)}
+.slide.in #map-svg .stop{opacity:1;transform:none}
+#map-svg .lab{opacity:0;transform:translateY(24px);transition:opacity .8s,transform 1s var(--ease);transition-delay:var(--d)}
+.slide.in #map-svg .lab{opacity:1;transform:none}
+.slide.out #map-svg .stop,.slide.out #map-svg .lab{opacity:0;transition-duration:.3s;transition-delay:0s}
+#map-svg .bldg{fill:var(--hair);stroke:var(--rule);stroke-width:2;stroke-dasharray:10 8}
+#map-svg .pulse{animation:pulse 2.6s ease-out infinite;transform-box:fill-box;transform-origin:50% 50%;animation-delay:var(--pd)}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.2);opacity:0}}
+.maps{position:absolute;left:128px;right:128px;bottom:40px;height:280px;display:flex;gap:26px;align-items:stretch}
+.mapc{height:100%;background:#F4F7FD;border-radius:18px;padding:10px;box-shadow:inset 0 0 0 1.5px var(--plate-line),0 30px 80px -30px rgba(0,0,0,.7)}
+.mapc img{height:100%;width:auto;display:block;border-radius:10px}
+.maps-cap{align-self:flex-end;margin-left:14px;font-size:24px;line-height:1.45;color:var(--mist)}
+.maps-cap b{display:block;color:var(--ink);font-size:30px;font-weight:620;margin-bottom:6px}
+.maps-cap span{font-family:var(--mono);font-size:21px;color:var(--link)}
+
+/* ---------- 10 years of GDG Venezia ---------- */
+#s-ten{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+#s-ten .gdg{margin-bottom:10px}
+.ten-n{font-size:400px;font-weight:800;line-height:.9;letter-spacing:-.02em;color:var(--ink)}
+.ten-l{font-size:92px;font-weight:720;line-height:1.05;margin-top:6px}
+.ten-sub{font-size:36px;line-height:1.4;color:var(--mist);margin-top:40px;max-width:40ch}
+.ten-bar{display:flex;gap:14px;margin-top:48px}
+.ten-bar i{width:90px;height:12px;border-radius:6px}
+
+/* ---------- delivery update ---------- */
+#s-delivery .dl-grid{display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:80px;height:100%;align-items:start;padding-top:40px}
+.dl-track{list-style:none;margin:40px 0 0;padding:0 0 0 54px;position:relative}
+.dl-track:before{content:"";position:absolute;left:15px;top:14px;bottom:30px;width:3px;background:var(--card-line)}
+.dl-track li{position:relative;font-size:36px;line-height:1.3;margin-bottom:26px;color:var(--mist)}
+.dl-track li:before{content:"";position:absolute;left:-50px;top:10px;width:24px;height:24px;border-radius:50%;background:var(--card-line)}
+.dl-track li small{display:block;font-size:24px;opacity:.75;margin-top:4px}
+.dl-track li.fail{color:var(--tr)}.dl-track li.fail:before{background:var(--r)}
+.dl-track li.ok{color:var(--ink);font-weight:700;font-size:48px}.dl-track li.ok:before{background:var(--g);box-shadow:0 0 0 8px rgba(52,168,83,.25)}
+.dl-track li.ok small{font-weight:400;font-size:30px;color:var(--mist);opacity:1}
+.dl-mascot{display:flex;align-items:center;justify-content:center;width:520px;height:520px;border-radius:32px}
+.dl-mascot img{max-width:100%;max-height:100%}
+
+/* ---------- 10 games ---------- */
+#s-games .h-xl{font-size:200px;font-weight:800;letter-spacing:-.01em;position:relative;white-space:nowrap}
+.glitch{position:relative;display:inline-block}
+.slide.in .glitch{animation:glitch 3.2s steps(1) infinite 1.6s}
+@keyframes glitch{
+  0%,86%,100%{text-shadow:none;transform:none}
+  88%{text-shadow:-8px 0 var(--r),8px 0 var(--b);transform:translateX(4px)}
+  90%{text-shadow:6px 0 var(--y),-6px 0 var(--g);transform:translateX(-6px) skewX(-6deg)}
+  92%{text-shadow:-3px 0 var(--b),3px 0 var(--r);transform:none}}
+.games{position:absolute;left:128px;top:430px;width:1000px;display:flex;flex-direction:column;gap:34px}
+.game{border-radius:22px;padding:30px 36px;background:var(--card);border:2px solid var(--gc);position:relative;
+  box-shadow:0 0 0 6px rgba(0,0,0,.0),0 0 60px -20px var(--gc)}
+.game h3{font-size:42px;font-weight:750;letter-spacing:0;display:flex;justify-content:space-between;align-items:baseline;gap:24px}
+.game h3 span{font-size:22px;font-weight:600;color:var(--gt,var(--gc))}
+.game p{font-size:25px;color:var(--mist);margin-top:8px;line-height:1.4}
+html[data-theme=light] .game{box-shadow:none}
+.type{margin-top:22px;font-family:var(--mono);font-size:30px;color:var(--dim);white-space:nowrap;overflow:hidden;text-shadow:none}
+.type b{font-weight:500;color:var(--ink)}
+.type i{font-style:normal;display:inline-block;width:3px;height:1.1em;background:var(--y);vertical-align:-.2em;margin:0 -1px;animation:blink .9s steps(1) infinite}
+.podium{position:absolute;right:128px;bottom:110px;width:620px;display:flex;align-items:flex-end;gap:16px}
+.pod{flex:1;display:flex;flex-direction:column;justify-content:flex-end;text-align:center}
+.pod .prize{font-size:26px;font-weight:600;line-height:1.25;margin-bottom:18px;opacity:0;transition:opacity .6s;transition-delay:calc(var(--d) + .7s)}
+.pod .bar{height:var(--h);border-radius:16px 16px 0 0;display:flex;align-items:flex-start;justify-content:center;padding-top:20px;
+  font-size:60px;font-weight:800;color:#071226;text-shadow:none;transform:scaleY(0);transform-origin:50% 100%;
+  transition:transform 1.1s cubic-bezier(.34,1.4,.64,1);transition-delay:var(--d)}
+.pod .bar sup{font-size:.45em;vertical-align:.9em;margin-left:2px}
+.slide.in .pod .bar{transform:none}.slide.in .pod .prize{opacity:1}
+.slide.out .pod .bar{transform:scaleY(0);transition-duration:.35s;transition-delay:0s}
+
+/* ---------- 11 info ---------- */
+#tl{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#tl .ax{stroke:var(--rule);stroke-width:2;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--ease) .4s}
+.slide.in #tl .ax{stroke-dashoffset:0}
+#tl .blk{transform:scaleX(0);transform-box:fill-box;transform-origin:0 50%;transition:transform 1s var(--ease);transition-delay:var(--d)}
+.slide.in #tl .blk{transform:none}
+#tl .tx{opacity:0;transition:opacity .7s;transition-delay:calc(var(--d) + .3s)}
+.slide.in #tl .tx{opacity:1}
+.slide.out #tl .blk,.slide.out #tl .tx{opacity:0;transition-duration:.3s;transition-delay:0s}
+.info-row{position:absolute;left:128px;right:128px;bottom:128px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+.info-row h4{font-size:26px;font-weight:400;color:var(--mist);margin-bottom:14px}
+.hashtag{font-size:68px;font-weight:780;letter-spacing:-.01em}
+.coc{font-size:44px;font-weight:600;line-height:1.15}
+.coc-link{font-family:var(--mono);font-size:24px;color:var(--link);margin-top:14px}
+
+/* ---------- 12 close ---------- */
+.cl-grid{display:grid;grid-template-columns:minmax(0,1fr) 600px;gap:90px;height:100%;align-items:center}
+.qr{position:relative;width:600px;height:600px;background:#fff;border-radius:34px;padding:52px;
+  transform:perspective(1400px) rotateY(-28deg) scale(.86);opacity:0;transition:transform 1.6s var(--ease),opacity .8s;transition-delay:.5s;
+  box-shadow:var(--qr-shadow)}
+.slide.in .qr{transform:none;opacity:1}
+.slide.out .qr{opacity:0;transition-duration:.4s;transition-delay:0s}
+.qr img{width:100%;height:100%;display:block;image-rendering:pixelated}
+.qr-cap{font-family:var(--mono);font-size:30px;color:var(--link);text-align:center;margin-top:44px}
+.qr .cn{position:absolute;width:64px;height:64px;border:10px solid;border-radius:6px}
+.qr .cn:nth-of-type(1){left:-22px;top:-22px;border-color:var(--r);border-right:0;border-bottom:0;border-radius:26px 0 0 0}
+.qr .cn:nth-of-type(2){right:-22px;top:-22px;border-color:var(--b);border-left:0;border-bottom:0;border-radius:0 26px 0 0}
+.qr .cn:nth-of-type(3){left:-22px;bottom:-22px;border-color:var(--g);border-right:0;border-top:0;border-radius:0 0 0 26px}
+.qr .cn:nth-of-type(4){right:-22px;bottom:-22px;border-color:var(--y);border-left:0;border-top:0;border-radius:0 0 26px 0}
+.cl-tag{text-shadow:none;font-size:76px;font-weight:800;letter-spacing:-.01em;margin-top:70px;
+  background:linear-gradient(90deg,var(--b),var(--r) 35%,var(--y) 65%,var(--g));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cl-tag .c{-webkit-text-fill-color:transparent}
+html[data-theme=light] .cl-tag{background-image:linear-gradient(90deg,var(--tb),var(--tr) 35%,var(--ty) 65%,var(--tg))}
+
+/* ---------- Italian GDG community ---------- */
+.it-grid{display:grid;grid-template-columns:minmax(0,1fr) 560px;gap:70px;height:100%}
+.it-lead{margin-top:24px;max-width:none}
+.chapters{margin-top:38px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px 20px;list-style:none}
+.chapters li{display:flex;align-items:center;gap:12px;font-size:27px;font-weight:600;line-height:1.15;white-space:nowrap;
+  padding:8px 14px;border-radius:12px;background:var(--card);border:1.5px solid var(--card-line);text-shadow:none}
+.chapters li i{flex:none;width:12px;height:12px;border-radius:50%;background:var(--dc)}
+.chapters li small{font-weight:400;color:var(--mist);font-size:.8em}
+.chapters li.us{border-color:var(--b);border-width:2.5px}
+.campus{margin-top:22px;font-size:23px;color:var(--mist);line-height:1.4}
+.campus b{color:var(--ink);font-weight:600}
+#it-svg{width:560px;height:760px;display:block;margin-top:40px;overflow:visible}
+#it-svg .coast{fill:var(--hair);stroke:var(--rule);stroke-width:2;stroke-dasharray:6 7;stroke-linejoin:round}
+#it-svg .dot{opacity:0;transform:scale(0);transform-box:fill-box;transform-origin:50% 50%;
+  transition:transform .9s cubic-bezier(.34,1.56,.64,1),opacity .3s;transition-delay:var(--d)}
+.slide.in #it-svg .dot{opacity:1;transform:none}
+.slide.out #it-svg .dot{opacity:0;transition-duration:.3s;transition-delay:0s}
+#it-svg .here{font-size:22px;font-weight:700;fill:var(--ink)}
+#it-svg .pulse{animation:pulse 2.6s ease-out infinite;transform-box:fill-box;transform-origin:50% 50%}
+
+/* ---------- T-shirt: two stamps ---------- */
+.ts-lead{margin-top:40px;max-width:30ch}
+.ts-alt{margin-top:34px;font-size:32px;line-height:1.4;color:var(--mist);max-width:36ch}
+.ts-alt b{color:var(--ink);font-weight:650}
+.stamps{display:flex;flex-direction:column;align-items:center;gap:30px}
+.stamp-row{display:flex;gap:40px;align-items:center}
+.stamp{width:250px;height:250px;border-radius:50%;border:5px dashed var(--sc);display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;background:var(--card);text-shadow:none;transform:rotate(-8deg) scale(.6);opacity:0;
+  transition:transform 1s cubic-bezier(.34,1.56,.64,1),opacity .4s;transition-delay:var(--d)}
+.stamp:nth-child(3){transform:rotate(8deg) scale(.6)}
+.slide.in .stamp{opacity:1;transform:rotate(-8deg)}
+.slide.in .stamp:nth-child(3){transform:rotate(8deg)}
+.slide.out .stamp{opacity:0;transition-duration:.3s;transition-delay:0s}
+.stamp svg{width:84px;height:84px}
+.stamp b{font-size:30px;font-weight:750;margin-top:8px;color:var(--st)}
+.stamp small{font-size:20px;color:var(--mist);font-weight:500}
+.stamp-plus{font-size:64px;font-weight:300;color:var(--mist)}
+.reward{display:flex;gap:18px;align-items:center;font-size:34px;font-weight:650;padding:18px 34px;border-radius:999px;
+  background:var(--card);border:2px solid var(--card-line);text-shadow:none}
+.reward span{color:var(--mist);font-weight:400;font-size:28px}
+
+/* ---------- qr slides: agenda, speaker feedback, close ---------- */
+.qr-link{font-family:var(--mono);font-size:28px;color:var(--link);margin-top:40px}
+.cl-link{font-size:30px;color:var(--mist);margin-top:44px}
+.cl-link b{font-family:var(--mono);font-weight:600;color:var(--link)}
+
+/* ---------- chrome ---------- */
+#prog{position:fixed;left:0;bottom:0;height:3px;width:0;background:var(--b);transition:width .8s var(--ease),background .8s;z-index:20;opacity:.85}
+#count{position:absolute;right:128px;top:48px;font-size:20px;color:var(--dim);font-variant-numeric:tabular-nums}
+#notes{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--panel);border-top:1px solid var(--panel-line);
+  padding:22px 40px 26px;display:none;font-family:var(--sans);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#notes.show{display:grid;grid-template-columns:1fr 300px;gap:40px}
+#notes .nt{font-size:22px;line-height:1.45;color:var(--ink)}
+#notes .meta{font-size:17px;color:var(--mist);line-height:1.6;text-align:right}
+#notes .meta b{color:var(--ink);font-size:30px;font-variant-numeric:tabular-nums;font-weight:600}
+#hint{position:fixed;top:16px;left:20px;z-index:25;font-size:14px;color:var(--mist);opacity:.8;transition:opacity 1s}
+#hint.gone{opacity:0}
+#themebtn{position:fixed;top:10px;right:14px;z-index:26;font:500 14px/1 var(--sans);color:var(--mist);background:var(--pill);border:1px solid var(--pill-line);
+  border-radius:999px;padding:7px 12px;cursor:pointer;opacity:.8;transition:opacity 1s}
+#themebtn.gone{opacity:0}
+#themebtn:hover,#themebtn:focus-visible{opacity:1}
+#zones{position:fixed;inset:0;z-index:10;display:flex}
+#zones div{flex:1}
+#zones.off{pointer-events:none}
+
+@media (prefers-reduced-motion:reduce){
+  .r,.k .c,.plate,.av,.qr,.pod .bar{transition-duration:.01s!important;transition-delay:0s!important}
+  .glitch,.plate::after,.intro-refl{animation:none!important}
+}
+</style>
+</head>
+<body>
+<canvas id="gl"></canvas>
+<div id="vig"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="ripple" x="-5%" y="-5%" width="110%" height="110%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.004 0.09" numOctaves="2" seed="7"/>
+    <feDisplacementMap in="SourceGraphic" scale="26" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+  <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+    <feGaussianBlur stdDeviation="7" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</svg>
+
+<div id="stage">
+
+  <!-- 0 · Opening title -->
+  <section class="slide" id="s-intro" data-cam="intro" data-title="Opening title">
+    <div class="intro-title">
+      <div class="gdg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="h-xl k">DevFest</div>
+      <div class="intro-sub k">Venezia 2026</div>
+    </div>
+    <div class="intro-refl" aria-hidden="true">
+      <div class="gdg"><i></i><i></i><i></i><i></i></div>
+      <div class="h-xl k">DevFest</div>
+      <div class="intro-sub k">Venezia 2026</div>
+    </div>
+    <div class="intro-date r"><strong>Saturday 24 October 2026</strong><br>Campus Scientifico, Università Ca' Foscari, Mestre</div>
+    <aside class="notes">Walk-on. Let the title land and the lagoon lights come on, then press → to roll the official opening video.</aside>
+  </section>
+
+  <!-- 1 · Video -->
+  <section class="slide" id="s-video" data-cam="video" data-title="Official video">
+    <div class="vframe">
+      <video id="vid" src="assets/opening.mp4" poster="assets/poster.jpg" preload="auto" playsinline></video>
+      <div class="vplay" id="vplay">
+        <div class="vbtn"><svg width="64" height="74" viewBox="0 0 64 74"><path d="M0 0L64 37L0 74Z" fill="#EAF2FF"/></svg></div>
+        <div class="vcap">Video di Apertura del DevFest<span>GDG Italia · press P or click to play</span></div>
+      </div>
+      <div class="vfallback" id="vfallback">
+        <div>The local video file is missing.</div>
+        <a href="https://www.youtube.com/watch?v=cE_1XoyZSYs" target="_blank" rel="noopener">youtube.com/watch?v=cE_1XoyZSYs</a>
+      </div>
+      <div class="vbar" id="vbar"></div>
+    </div>
+    <aside class="notes">0:00–0:30 — While people take their seats, play the official opening video. P or click toggles play/pause; it starts by itself when you arrive with the keyboard. Plays from the local file (assets/opening.mp4), no internet needed. Online backup: youtube.com/watch?v=cE_1XoyZSYs</aside>
+  </section>
+
+  <!-- 2 · Welcome -->
+  <section class="slide" id="s-welcome" data-cam="welcome" data-title="Welcome">
+    <h1 class="h-l k wel-h">Welcome to<br>DevFest Venezia 2026</h1>
+    <div class="wel-meta">
+      <p class="lead r">Community events organized by Google Developer Groups: learning, building, connecting.</p>
+      <p class="body r" style="color:var(--ink)">Saturday 24 October 2026<br><span class="mist">Campus Scientifico<br>Università Ca' Foscari, Mestre</span></p>
+    </div>
+    <div class="stats">
+      <div class="stat big r"><span class="n"><span class="odo" data-to="500" data-suf="+"></span></span><span class="l">attendees</span></div>
+      <div class="stat r"><span class="n"><span class="odo" data-to="5"></span></span><span class="l"><i class="sw" style="background:var(--b)"></i>tracks</span></div>
+      <div class="stat r"><span class="n"><span class="odo" data-to="25" data-suf="+"></span></span><span class="l"><i class="sw" style="background:var(--r)"></i>talks</span></div>
+      <div class="stat r"><span class="n"><span class="odo" data-to="30" data-suf="+"></span></span><span class="l"><i class="sw" style="background:var(--y)"></i>speakers</span></div>
+      <div class="stat r"><span class="n"><span class="odo" data-to="4"></span></span><span class="l"><i class="sw" style="background:var(--g)"></i>workshops</span></div>
+      <div class="stat lang r"><span class="n">EN + IT</span><span class="l">English &amp; Italian</span></div>
+    </div>
+    <aside class="notes">0:30–2:00 — Welcome everyone, explain what DevFest is for newcomers, set the scale of today.</aside>
+  </section>
+
+  <!-- 3 · History: Commit graph -->
+  <section class="slide" id="s-commit" data-cam="commit" data-title="History: Commit graph">
+    <h2 class="h-m k">How DevFest Venezia grew</h2>
+    <div class="cg-term r"><span id="cg-type"></span><span class="cur"></span></div>
+    <div class="cg-big r"><span class="odo" id="cg-odo" data-to="100" data-digits="3" data-suf="+"></span><div class="l" id="cg-l">people</div></div>
+    <svg id="cg-svg" viewBox="0 0 1920 1080"></svg>
+    <aside class="notes">2:00–3:30 — From a single DevFest Veneto meetup in 2017 to today's DevFest Venezia: nine years of growth, one commit per edition. Figures are rounded down; before 2025 they are indicative, not official headcounts. R replays.</aside>
+  </section>
+
+  <!-- 3b · 10 years of GDG Venezia -->
+  <section class="slide" id="s-ten" data-cam="ten" data-title="10 years of GDG Venezia">
+    <div class="gdg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="ten-n k"><span class="odo" data-to="10" data-digits="2"></span></div>
+    <div class="ten-l k">years of GDG Venezia</div>
+    <p class="ten-sub r">Ten years of meetups, DevFests and people learning together. Thank you for being part of it.</p>
+    <div class="ten-bar r" aria-hidden="true"><i style="background:var(--b)"></i><i style="background:var(--r)"></i><i style="background:var(--y)"></i><i style="background:var(--g)"></i></div>
+    <aside class="notes">~30 s — This year GDG Venezia turns 10. Pause on the number, thank the people who came to meetups and DevFests over the years, then move on to what GDG Venezia is.</aside>
+  </section>
+
+  <!-- 4 · GDG Venezia -->
+  <section class="slide" id="s-gdg" data-cam="gdg" data-title="What is GDG Venezia">
+    <div class="gdg-grid">
+      <div>
+        <h2 class="h-m k">What is<br>GDG Venezia</h2>
+        <p class="lead r" style="margin-top:44px;max-width:30ch">A volunteer-run community for developers interested in Google tech: Android, Web, Cloud, Flutter, AI and more. Free, open, year-round.</p>
+        <div class="gdg-find">
+          <dl class="involve r">
+            <dt>Find us</dt><dd class="url">gdgvenezia.it</dd>
+            <dt>Get involved</dt><dd>Come to our meetups, propose a talk, or volunteer at the next event.</dd>
+          </dl>
+          <div class="qr xs" aria-label="QR code: gdgvenezia.it">
+            <img src="assets/gdgvenezia-qr.svg" alt="QR code linking to https://gdgvenezia.it">
+            <i class="cn"></i><i class="cn"></i><i class="cn"></i><i class="cn"></i>
+          </div>
+        </div>
+      </div>
+      <div class="verbs">
+        <div class="verb k">Learn.</div>
+        <div class="verb k">Build.</div>
+        <div class="verb k">Connect.</div>
+      </div>
+    </div>
+    <aside class="notes">3:30–5:00 — Explain GDG Venezia is volunteer-run; invite people to stay involved beyond today. One link for everything (meetups, socials, chat): gdgvenezia.it — scan the QR.</aside>
+  </section>
+
+  <!-- 5 · Italian GDG community -->
+  <section class="slide" id="s-italy" data-cam="italy" data-title="Italian GDG community">
+    <div class="it-grid">
+      <div>
+        <h2 class="h-m k">The Italian GDG community</h2>
+        <p class="lead r it-lead">Thank you to every Google Developer Group in Italy: one community, many cities.</p>
+        <ul class="chapters" id="chapters"></ul>
+        <p class="campus r" style="--d:1.5s"><b>+ GDG on Campus</b> · Politecnico di Milano · Luiss Guido Carli, Roma</p>
+      </div>
+      <svg id="it-svg" viewBox="0 0 560 760" aria-hidden="true"></svg>
+    </div>
+    <aside class="notes">Thank the other Italian GDG chapters — many of them help, speak or come to DevFest Venezia. List = active GDG chapters in Italy on gdg.community.dev (Bevy chapter directory, checked 22 Oct 2026): 27 GDG chapters (us included) + 2 GDG on Campus. Map is schematic, dots at the chapter's registered city. If someone in the room is from one of these chapters, ask them to raise a hand.</aside>
+  </section>
+
+  <!-- 5b · Google community manager -->
+  <section class="slide" id="s-alexis" data-cam="alexis" data-title="Please welcome Alexis Einhorn Alfie">
+    <div class="rec-kicker r">Google Developer Groups</div>
+    <h2 class="h-l k">Please welcome<br>Alexis Einhorn Alfie</h2>
+    <div class="rec-name r">Google Community Manager, Italy &amp; Spain</div>
+    <aside class="notes">~2 min — Thank Alexis, Google's community manager for the GDG chapters in Italy and Spain, for supporting DevFest Venezia, and invite Alexis to say a few words.</aside>
+  </section>
+
+  <!-- 6 · Team -->
+  <section class="slide" id="s-team" data-cam="team" data-title="Organizing team">
+    <h2 class="h-l k">The organizing team</h2>
+    <p class="lead r" style="margin-top:30px">A 100% volunteer effort.</p>
+    <div class="team" id="team"></div>
+    <aside class="notes">5:00–6:00 — Thank the team by name; note this is a 100% volunteer effort.</aside>
+  </section>
+
+  <!-- 7 · Institutional welcome -->
+  <section class="slide" id="s-rector" data-cam="rector" data-title="Please welcome Andrea Marin">
+    <div class="rec-kicker r">Our host, Università Ca' Foscari Venezia</div>
+    <h2 class="h-l k">Please welcome<br>Prof. Andrea Marin</h2>
+    <div class="rec-name r">Prorettore all'Offerta Formativa</div>
+    <aside class="notes">6:00–8:00 (~2 min incl. remarks) — Thank the host university, invite Prof. Andrea Marin, Ca' Foscari's Vice-Rector for Study Programmes (Prorettore all'Offerta Formativa), to say a few words.</aside>
+  </section>
+
+  <!-- 7b · Computer Science degree coordinator -->
+  <section class="slide" id="s-luccio" data-cam="luccio" data-title="Please welcome Flaminia Luccio">
+    <div class="rec-kicker r">Our host, Università Ca' Foscari Venezia</div>
+    <h2 class="h-l k">Please welcome<br>Prof.ssa Flaminia Luccio</h2>
+    <div class="rec-name r">Coordinatrice del Corso di Laurea in Informatica</div>
+    <aside class="notes">~2 min incl. remarks — Thank Prof. Flaminia Luccio, coordinator of Ca' Foscari's Computer Science degree programme (Coordinatrice del Corso di Laurea in Informatica), and invite her to say a few words.</aside>
+  </section>
+
+  <!-- 8 · Sponsors -->
+  <section class="slide" id="s-sponsors" data-cam="sponsors" data-title="Sponsors">
+    <h2 class="h-l k">Thank you, sponsors</h2>
+    <div class="sp-wrap">
+      <div class="sp-main">
+        <div class="sp-tier r">Main sponsor</div>
+        <div class="plate" style="--d:.5s"><img src="assets/sponsors/google.svg" alt="Google"></div>
+        <div class="sp-tier r" style="margin-top:20px">Partners</div>
+        <div class="sp-part" id="sp-part"></div>
+      </div>
+      <div>
+        <div class="sp-tier r" style="margin-bottom:26px">Sponsors</div>
+        <div class="sp-grid" id="sp-grid"></div>
+      </div>
+    </div>
+    <aside class="notes">8:00–9:00 — Thank sponsors, shoutout to main sponsor Google, and thank the partners: Ca' Foscari, Marca User Group, Coding Gym, CoderDojo Zero Branco. (Logos from the devfest26 website repo.)</aside>
+  </section>
+
+  <!-- 9 · Map -->
+  <section class="slide" id="s-map" data-cam="map" data-title="Rooms & tracks">
+    <h2 class="h-l k">Five tracks, five rooms</h2>
+    <p class="lead r" style="margin-top:26px;max-width:none">Every track is named after a drink. Follow the line.</p>
+    <svg id="map-svg" viewBox="0 0 1920 1080"></svg>
+    <div class="maps">
+      <div class="mapc r"><img src="assets/maps/campus.webp" alt="Campus map: Alfa and Epsilon buildings, check-in, food trucks"></div>
+      <div class="mapc r"><img src="assets/maps/alfa-ground.webp" alt="Alfa building, ground floor: entrance and check-in"></div>
+      <div class="mapc r"><img src="assets/maps/alfa-basement.webp" alt="Alfa building, basement: Prosecco auditorium and Spritz conference room"></div>
+      <div class="mapc r"><img src="assets/maps/epsilon-ground.webp" alt="Epsilon building, ground floor: Birra, Bellini, Espresso rooms"></div>
+      <div class="maps-cap r"><b>Venue maps</b>Zoomable on<br><span>devfest26.gdgvenezia.it</span></div>
+    </div>
+    <aside class="notes">9:00–10:00 — Check-in is in Alfa (ground floor). Prosecco (Auditorium Danilo Mainardi) and Spritz (Sala conferenze Gabriele Zanetto) are in the Alfa basement; Birra, Bellini and Espresso (workshops) are the Epsilon 3/2/1 rooms across the road. Food trucks behind Alfa. Full zoomable maps are on the website. The line is a schematic, not a floor plan.</aside>
+  </section>
+
+  <!-- 10 · Agenda -->
+  <section class="slide" id="s-agenda" data-cam="agenda" data-title="Agenda">
+    <div class="cl-grid">
+      <div>
+        <h2 class="h-l k">Today's<br>agenda</h2>
+        <p class="lead r" style="margin-top:44px">All talks, workshops, rooms and times. Scan the code to open it on your phone.</p>
+        <div class="qr-link r">devfest26.gdgvenezia.it/agenda</div>
+      </div>
+      <div>
+        <div class="qr" aria-label="QR code: devfest26.gdgvenezia.it/agenda">
+          <img src="assets/agenda-qr.svg" alt="QR code linking to https://devfest26.gdgvenezia.it/agenda/">
+          <i class="cn"></i><i class="cn"></i><i class="cn"></i><i class="cn"></i>
+        </div>
+        <div class="qr-cap r">Full agenda</div>
+      </div>
+    </div>
+    <aside class="notes">Agenda — the full schedule is on the website: devfest26.gdgvenezia.it/agenda. Give people a few seconds to scan.</aside>
+  </section>
+
+  <!-- 11 · Games -->
+  <section class="slide" id="s-games" data-cam="games" data-title="Games & contests">
+    <h2 class="h-xl k"><span class="glitch">Game on.</span></h2>
+    <div class="games">
+      <div class="game r" style="--gc:var(--b);--gt:var(--tb)">
+        <h3>Wikipedia Speedrun <span>stamp 1</span></h3>
+        <p>From page A to page B: visit as many unique pages as you can in 2 minutes.</p>
+      </div>
+      <div class="game r" style="--gc:var(--y);--gt:var(--ty)">
+        <h3>Typing race <span>Monkeytype · stamp 2</span></h3>
+        <p>Type a long text fast and accurately. Fastest with no mistakes wins.</p>
+        <div class="type" id="type"></div>
+      </div>
+    </div>
+    <div class="podium">
+      <div class="pod" style="--d:.9s"><div class="prize">Instant camera</div><div class="bar" style="--h:250px;background:var(--b)">2<sup>nd</sup></div></div>
+      <div class="pod" style="--d:.7s"><div class="prize">Lego Game Boy</div><div class="bar" style="--h:360px;background:var(--y)">1<sup>st</sup></div></div>
+      <div class="pod" style="--d:1.1s"><div class="prize">Google backpack</div><div class="bar" style="--h:180px;background:var(--g)">3<sup>rd</sup></div></div>
+    </div>
+    <aside class="notes">10:00–11:00 — Two contests, prize tiers on the podium. Wikipedia Speedrun: go from page A to page B, touching as many unique pages as possible, within 2 minutes. Typing race on Monkeytype: fastest with no mistakes wins. Each game gives you a stamp: you need both for the T-shirt (next slides). Say when/where to play.</aside>
+  </section>
+
+  <!-- 12 · Practical info -->
+  <section class="slide" id="s-info" data-cam="info" data-title="Practical info">
+    <h2 class="h-l k">Practical info</h2>
+    <svg id="tl" viewBox="0 0 1920 1080"></svg>
+    <div class="info-row">
+      <div class="r"><h4>Code of conduct</h4><div class="coc">Be respectful, be inclusive.</div><div class="coc-link">developers.google.com/community-guidelines</div></div>
+      <div class="r"><h4>Share the day</h4><div class="hashtag">#DevFestVenezia2026</div></div>
+    </div>
+    <aside class="notes">11:00–12:00 — Run through hashtag, one-line code of conduct (Google Developer community guidelines apply to everyone, everywhere on site), today's key times. Total target 15-20 min including the Ca' Foscari welcome and the history animation.</aside>
+  </section>
+
+  <!-- 13 · T-shirt -->
+  <section class="slide" id="s-delivery" data-cam="delivery" data-title="T-shirt delivery update">
+    <div class="dl-grid">
+      <div>
+        <h2 class="h-m k">Delivery update</h2>
+        <ul class="dl-track">
+          <li class="r" style="--d:.6s">In transit…<small>still in transit…</small></li>
+          <li class="r fail" style="--d:1.6s">Delivery failed ❌</li>
+          <li class="r ok" style="--d:2.8s">✨ They magically appeared!<small>(Don't ask us how.)</small></li>
+        </ul>
+      </div>
+      <div class="dl-mascot r" style="--d:3.2s" id="dl-mascot"></div>
+    </div>
+    <aside class="notes">Running joke from our socials: the courier never delivered the T-shirts. Let the timeline play out step by step, pause on "Delivery failed", then the reveal: they magically appeared. Don't explain how. Next slide: how to get one.</aside>
+  </section>
+
+  <section class="slide" id="s-tshirt" data-cam="tshirt" data-title="Get your T-shirt">
+    <div class="cl-grid">
+      <div>
+        <h2 class="h-l k">Get your<br>T-shirt!</h2>
+        <p class="lead r ts-lead">Play <b style="font-weight:650">both games</b> and collect <b style="font-weight:650">both stamps</b> to get the limited-edition DevFest T-shirt.</p>
+        <p class="ts-alt r">Not a T-shirt person? Take a <b>limited-edition hand-drawn postcard</b> instead.</p>
+      </div>
+      <div class="stamps">
+        <div class="stamp-row">
+          <div class="stamp" style="--sc:var(--b);--st:var(--tb);--d:.7s"><svg viewBox="0 0 48 48"><path d="M10 25l9 9 19-20" fill="none" stroke="var(--b)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Wikipedia</b><small>Speedrun</small></div>
+          <div class="stamp-plus r">+</div>
+          <div class="stamp" style="--sc:var(--y);--st:var(--ty);--d:1s"><svg viewBox="0 0 48 48"><path d="M10 25l9 9 19-20" fill="none" stroke="var(--y)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Typing</b><small>race</small></div>
+        </div>
+        <div class="reward r">T-shirt <span>or</span> postcard</div>
+      </div>
+    </div>
+    <aside class="notes">T-shirts (limited edition): new mechanic this year — play BOTH games (Wikipedia Speedrun + typing race) and collect BOTH stamps, then bring them to the organizers to get a T-shirt. Alternative to the T-shirt: a limited-edition hand-drawn postcard. No Instagram story needed. Don't promise numbers; say where stamps and T-shirts/postcards are handed out today.</aside>
+  </section>
+
+  <!-- 14 · Speaker feedback -->
+  <section class="slide" id="s-spkfb" data-cam="spkfb" data-title="Speaker feedback">
+    <div class="cl-grid">
+      <div>
+        <h2 class="h-l k">Feedback for<br>the speakers</h2>
+        <p class="lead r" style="margin-top:44px">Speakers volunteer their time too. After each talk, leave a rating and a few words: it really helps them.</p>
+      </div>
+      <div>
+        <div class="qr" aria-label="QR code: speaker feedback form">
+          <img src="assets/speaker-feedback-qr.svg" alt="QR code linking to the speaker feedback form">
+          <i class="cn"></i><i class="cn"></i><i class="cn"></i><i class="cn"></i>
+        </div>
+        <div class="qr-cap r">Rate the talks<br>openfeedback.io</div>
+      </div>
+    </div>
+    <aside class="notes">Speaker feedback — ask everyone to rate the talks they attend: scan the QR. (QR: assets/speaker-feedback-qr.svg → https://openfeedback.io/BLKfpVftjylgOi1Dssd3)</aside>
+  </section>
+
+  <!-- 15 · Close -->
+  <section class="slide" id="s-close" data-cam="close" data-title="Feedback & close">
+    <div class="cl-grid">
+      <div>
+        <h2 class="h-l k">Have a great<br>DevFest.</h2>
+        <p class="lead r" style="margin-top:44px">Tell us how today went: scan the code to leave feedback.</p>
+        <p class="cl-link r">Stay in touch: <b>gdgvenezia.it</b></p>
+        <div class="cl-tag k" style="margin-top:56px">#DevFestVenezia2026</div>
+      </div>
+      <div>
+        <div class="qr" aria-label="QR code: forms.gle/4hQzEtTF3Z6XX5VKA">
+          <img src="assets/feedback-qr.svg" alt="QR code linking to https://forms.gle/4hQzEtTF3Z6XX5VKA">
+          <i class="cn"></i><i class="cn"></i><i class="cn"></i><i class="cn"></i>
+        </div>
+        <div class="qr-cap r">forms.gle/4hQzEtTF3Z6XX5VKA</div>
+      </div>
+    </div>
+    <aside class="notes">Close — feedback QR + hashtag. Everything about GDG Venezia (meetups, socials, chat) is on gdgvenezia.it. Keep this on screen while people move to the first talks.</aside>
+  </section>
+
+  <div id="count"></div>
+</div>
+
+<div id="zones"><div id="z-prev"></div><div id="z-next"></div></div>
+<div id="prog"></div>
+<div id="notes"><div class="nt" id="nt"></div><div class="meta" id="nmeta"></div></div>
+<div id="hint">→ / space next · ← back · N notes · F fullscreen · R replay · P video · T theme</div>
+<button id="themebtn" type="button" aria-label="Toggle light/dark theme">◐ Dark theme · T</button>
+
+<script src="three.min.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+var GC = {b:'#4285F4', r:'#EA4335', y:'#FBBC04', g:'#34A853'};
+var GCOL = [GC.b, GC.r, GC.y, GC.g];
+var clamp=function(x,a,b){return Math.max(a,Math.min(b,x))};
+var easeIO=function(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2};
+var easeOut=function(t){return 1-Math.pow(1-t,3)};
+var easeBack=function(t){var c1=1.4,c3=c1+1;return 1+c3*Math.pow(t-1,3)+c1*Math.pow(t-1,2)};
+
+/* ============ data (from v1) ============ */
+// p = shown as "p+" (rounded down, never precise); no p = no number shown; sz = dot size only
+var EDITIONS = [
+  {year:2017, label:'DevFest1 Veneto',   p:100},
+  {year:2018, label:'DevFest Veneto',    p:150},
+  {year:2019, label:'DevFest Veneto',    p:200},
+  {year:2022, label:'DevFest Triveneto', p:300},
+  {year:2023, label:'DevFest Venezia',   p:400},
+  {year:2024, label:'DevFest Venezia',   p:450, sz:480},
+  {year:2025, label:'DevFest Venezia',   p:550},
+  {year:2026, label:'DevFest Venezia',   sz:500}
+];
+// [name, optional photo in assets/team/] — no photo = initials
+var TEAM = [['Andrea Maglie','andrea-maglie.jpg'],['Prof. Pietro Ferrara','pietro-ferrara.jpg'],['Marco Gomiero','marco-gomiero.jpg'],['Prof. Andrea Marin','andrea-marin.png'],
+            ['Fabio Catinella','fabio-catinella.jpg'],['Simone Formica','simone-formica.jpg'],['Jessica Marini','jessica-marini.jpg'],['Nicolò Giaccone','nicolo-giaccone.jpg']];
+var SPONSORS = [['Aton','aton.webp'],['beanTech','beantech.png'],['Confindustria Veneto Est','confindustria.png'],['De’ Longhi Group','delonghi.png'],
+  ['Ecomi','ecomi.jpg'],['ERGON Informatica','ergon.png'],['Gottardo','gottardo.webp'],['Körber Technologies','koerber.png'],
+  ['NTT DATA','nttdata.png'],['Ordine Ingegneri Venezia','ordineingegneri.webp'],['Prometea Pixel','prometea.png'],['Targa Telematics','targatelematics.png'],
+  ['UNOX','unox.png'],['Vimar','vimar.jpg'],['Arsenalia','arsenalia.png'],['Galdi','galdi.png']];
+var PARTNERS = [['Università Ca’ Foscari Venezia','unive.webp'],['Marca User Group','mug.png'],['Coding Gym','coding-gym.png'],['CoderDojo Zero Branco','coderjo.png']];
+var ROOMS = [
+  {track:'Prosecco', room:'Auditorium · Danilo Mainardi', c:GC.y},
+  {track:'Spritz',   room:'Sala conferenze · Gabriele Zanetto', c:GC.r},
+  {track:'Espresso', room:'Aula Epsilon 1 · workshops', c:'#C9D6EE'},
+  {track:'Bellini',  room:'Aula Epsilon 2', c:'#F0A070'},
+  {track:'Birra',    room:'Aula Epsilon 3', c:GC.g}
+].map(function(r,i){ r.v='var(--room'+i+')'; return r; });
+// active GDG chapters in Italy, from the gdg.community.dev chapter directory (22 Oct 2026), north to south
+var CHAPTERS = [
+  ["Valle d'Aosta",45.75,7.65],['Torino',45.07,7.68],['Cloud Torino',45.05,7.67],['Milano',45.46,9.19],['Cloud Milano',45.46,9.19],
+  ['Brescia',45.54,10.21],['Vicenza',45.55,11.54],['Treviso',45.67,12.24],['Venezia',45.44,12.33,1],['Genova',44.41,8.93],
+  ['Cloud Modena',44.65,10.93],['Firenze',43.77,11.25],['Pisa',43.72,10.4],['Teramo',42.66,13.7],['Pescara',42.46,14.21],
+  ['Roma',41.9,12.48],['Roma Città',41.9,12.48],['Campobasso',41.56,14.67],['Bari',41.13,16.87],['Napoli',40.85,14.27],
+  ['Basilicata',40.64,15.81,0,'Potenza'],['Lecce',40.35,18.17],['Palermo',38.12,13.36],['Nebrodi',38.07,14.64],['Catania',37.5,15.09],
+  ['Agrigento',37.31,13.58],['Gela',37.07,14.25]
+];
+var IT_OUTLINE = {
+  main:[[43.79,7.53],[44.41,8.93],[44.1,9.82],[43.55,10.31],[42.93,10.5],[42.09,11.8],[41.45,12.62],[41.21,13.57],[40.83,14.25],[40.6,14.33],[40.68,14.77],
+    [40.07,15.5],[38.68,15.9],[38.1,15.65],[37.93,16.06],[38.9,16.6],[39.08,17.12],[40.47,17.24],[39.8,18.36],[40.15,18.49],[40.64,17.94],[41.13,16.87],
+    [41.63,15.92],[41.88,16.18],[42.0,15.0],[42.46,14.22],[43.62,13.52],[44.06,12.57],[45.22,12.28],[45.44,12.33],[45.65,13.78],[46.5,13.6],
+    [46.97,12.2],[47.0,11.5],[46.7,10.5],[46.5,10.15],[46.0,9.0],[45.93,7.87],[45.83,6.86],[45.1,6.7],[44.15,7.56]],
+  sicily:[[38.27,15.65],[37.5,15.09],[37.07,15.29],[36.69,15.13],[37.06,14.25],[37.29,13.58],[37.65,12.59],[38.02,12.5],[38.12,13.36],[38.04,14.02],[38.22,15.24]],
+  sardinia:[[41.25,9.2],[40.92,9.5],[40.53,9.82],[39.93,9.7],[39.14,9.52],[39.21,9.11],[38.87,8.64],[39.05,8.4],[39.9,8.5],[40.56,8.31],[40.95,8.22],[40.91,8.71]]
+};
+var TIMES = [
+  {name:'Opening keynote', a:9.25, b:9+40/60, t:'09:15–09:40', c:GC.b, row:0},
+  {name:'Coffee break', a:11.25, b:11.75, t:'11:15–11:45', c:GC.y, row:1},
+  {name:'Lunch', a:13.25, b:14.5, t:'13:15–14:30', c:GC.g, row:0},
+  {name:'Coffee break', a:16, b:16.5, t:'16:00–16:30', c:GC.y, row:1},
+  {name:'Closing keynote', a:17+10/60, b:17.5, t:'17:10–17:30', c:GC.r, row:0, right:true}
+];
+
+/* ============ DOM builders ============ */
+var NS='http://www.w3.org/2000/svg';
+function el(tag, attrs, parent, ns){
+  var e = ns ? document.createElementNS(NS, tag) : document.createElement(tag);
+  if (attrs) for (var k in attrs){ if (k==='text') e.textContent=attrs[k]; else if (k==='html') e.innerHTML=attrs[k]; else e.setAttribute(k, attrs[k]); }
+  if (parent) parent.appendChild(e);
+  return e;
+}
+// team
+(function(){
+  var t=$('#team'), cls=['cb','cr','cy','cg'];
+  TEAM.forEach(function(m,i){
+    var name=m[0], prof=/^Prof\. /.test(name), clean=name.replace(/^Prof\. /,'');
+    var ini=clean.split(' ').map(function(w){return w[0]}).join('').slice(0,2);
+    var row=Math.floor(i/4), col=i%4;
+    var mate=el('div',{'class':'mate r'},t); mate.style.setProperty('--dd',(row+col)*0.12+'s');
+    var av=el('div',{'class':'av '+cls[(i+row)%4],text:ini},mate); av.style.setProperty('--d',(0.5+(row+col)*0.13)+'s');
+    if (m[1]){ var im=el('img',{src:'assets/team/'+m[1],alt:clean},av); im.onerror=function(){ im.remove(); }; }
+    el('div',{'class':'nm',html: clean + (prof?'<small>Prof.</small>':'')},mate);
+  });
+})();
+// sponsors
+(function(){
+  var g=$('#sp-grid');
+  SPONSORS.forEach(function(s,i){
+    var row=Math.floor(i/4), col=i%4;
+    var p=el('div',{'class':'plate'},g); p.style.setProperty('--d',(0.7+(row+col)*0.11)+'s');
+    el('img',{src:'assets/sponsors/'+s[1], alt:s[0]},p);
+  });
+  var pg=$('#sp-part');
+  PARTNERS.forEach(function(s,i){
+    var p=el('div',{'class':'plate'},pg); p.style.setProperty('--d',(0.8+i*0.11)+'s'); p.style.setProperty('--px','30px'); p.style.setProperty('--py','16px');
+    el('img',{src:'assets/partners/'+s[1], alt:s[0]},p);
+  });
+})();
+// map
+(function(){
+  var s=$('#map-svg'), y=545, xs=[250,620,1010,1320,1630];
+  var d='M150 '+y+' L'+(xs[1]+60)+' '+y+' C'+(xs[1]+150)+' '+y+' '+(xs[1]+150)+' '+(y+90)+' '+(xs[1]+240)+' '+(y+90)+' L'+(xs[2]-120)+' '+(y+90)+' C'+(xs[2]-40)+' '+(y+90)+' '+(xs[2]-40)+' '+y+' '+(xs[2]+10)+' '+y+' L1770 '+y;
+  var defs=el('defs',null,s,1), lg=el('linearGradient',{id:'mapg',x1:'0',x2:'1',y1:'0',y2:'0'},defs,1);
+  [['0',0],['.3',1],['.62',2],['.8',3],['1',4]].forEach(function(o){el('stop',{offset:o[0],style:'stop-color:var(--room'+o[1]+')'},lg,1)});
+  [[xs[0]-160,xs[1]+150,'Alfa · basement'],[xs[2]-150,xs[4]+150,'Epsilon · ground floor']].forEach(function(b){
+    el('rect',{'class':'bldg lab',x:b[0],y:y-205,width:b[1]-b[0],height:380,rx:40,style:'--d:1.6s'},s,1);
+    el('text',{'class':'lab',x:b[1]-30,y:y+150,'text-anchor':'end','font-size':'24',style:'--d:1.8s;fill:var(--mist)',text:b[2]},s,1);
+  });
+  el('path',{'class':'ln',d:d,style:'stroke:var(--track)','stroke-width':'34',pathLength:'1'},s,1);
+  el('path',{'class':'ln',d:d,stroke:'url(#mapg)',pathLength:'1',filter:'url(#glow)'},s,1);
+  var yy=[y,y,y,y,y];
+  ROOMS.forEach(function(r,i){
+    var x=xs[i], dl=(0.9+i*0.28)+'s';
+    var g=el('g',null,s,1);
+    var pc=el('circle',{'class':'pulse',cx:x,cy:yy[i],r:22,fill:'none',style:'stroke:'+r.v,'stroke-width':'3'},g,1); pc.style.setProperty('--pd',(i*0.5)+'s');
+    var st=el('g',{'class':'stop',style:'--d:'+dl},g,1);
+    el('circle',{cx:x,cy:yy[i],r:30,style:'fill:var(--node);stroke:'+r.v,'stroke-width':'10'},st,1);
+    el('circle',{cx:x,cy:yy[i],r:9,style:'fill:'+r.v},st,1);
+    var lb=el('g',{'class':'lab',style:'--d:'+(1.1+i*0.28)+'s'},s,1);
+    el('text',{x:x,y:yy[i]-80,'text-anchor':'middle',style:'fill:'+r.v,'font-size':'52','font-weight':'750',text:r.track},lb,1);
+    el('line',{x1:x,y1:yy[i]-62,x2:x,y2:yy[i]-36,style:'stroke:'+r.v,'stroke-width':'2',opacity:'.6'},lb,1);
+    var t2=el('text',{x:x,y:yy[i]+78,'text-anchor':'middle',style:'fill:var(--ink)','font-size':'23','font-weight':'500'},lb,1);
+    var parts=r.room.split(' · '); t2.textContent=parts[0];
+    if (parts[1]) el('tspan',{x:x,dy:'32',style:'fill:var(--mist)',text:parts[1]},t2,1);
+  });
+  // the vaporetto
+  var boat=el('g',null,s,1);
+  el('rect',{x:-26,y:-11,width:52,height:22,rx:11,style:'fill:var(--ink)'},boat,1);
+  el('rect',{x:-14,y:-5,width:28,height:10,rx:5,style:'fill:var(--node)'},boat,1);
+  el('animateMotion',{dur:'11s',repeatCount:'indefinite',rotate:'auto',path:d,begin:'0s'},boat,1);
+  el('text',{x:1792,y:300,'text-anchor':'end',style:'fill:var(--dim)','font-size':'22',text:'Schematic, not to scale'},s,1);
+})();
+// timeline
+(function(){
+  var s=$('#tl'), x0=170, x1=1750, y=640, hx=function(h){return x0+(h-9)*(x1-x0)/9};
+  el('line',{'class':'ax',x1:x0,y1:y,x2:x1,y2:y,pathLength:'1'},s,1);
+  for (var h=9;h<=18;h++){
+    el('text',{'class':'tx',x:hx(h),y:y+48,'text-anchor':'middle','font-size':'22',style:'fill:var(--dim);--d:'+(0.4+(h-9)*0.05)+'s',text:(h<10?'0':'')+h+':00'},s,1);
+    el('line',{'class':'tx',x1:hx(h),y1:y-8,x2:hx(h),y2:y+8,'stroke-width':'2',style:'stroke:var(--dim);--d:'+(0.4+(h-9)*0.05)+'s'},s,1);
+  }
+  TIMES.forEach(function(t,i){
+    var d=(0.9+i*0.22)+'s', xa=hx(t.a), xb=hx(t.b), ty=t.row? y-120 : y-215;
+    el('rect',{'class':'blk',x:xa,y:y-22,width:Math.max(10,xb-xa),height:44,rx:8,fill:t.c,style:'--d:'+d},s,1);
+    var anchor=t.right?'end':'start', tx=t.right?xb:xa;
+    el('line',{'class':'tx',x1:t.right?xb-2:xa+2,y1:y-26,x2:t.right?xb-2:xa+2,y2:ty+18,stroke:t.c,'stroke-width':'2',style:'--d:'+d},s,1);
+    el('text',{'class':'tx',x:tx,y:ty-34,'text-anchor':anchor,'font-size':'34','font-weight':'650',style:'fill:var(--ink);--d:'+d,text:t.name},s,1);
+    el('text',{'class':'tx',x:tx,y:ty+2,'text-anchor':anchor,'font-size':'26',style:'fill:var(--mist);--d:'+d,text:t.t},s,1);
+  });
+})();
+// Italian GDG chapters: name grid + schematic dot map
+(function(){
+  var ul=$('#chapters'), s=$('#it-svg');
+  var X=function(lng){return 10+(lng-6.5)*0.745*59.4}, Y=function(lat){return 70+(47.2-lat)*59.4};
+  Object.keys(IT_OUTLINE).forEach(function(k){
+    el('path',{'class':'coast',d:'M'+IT_OUTLINE[k].map(function(p){return X(p[1]).toFixed(1)+' '+Y(p[0]).toFixed(1)}).join(' L')+' Z'},s,1);
+  });
+  CHAPTERS.forEach(function(c,i){
+    var col=c[3]?GC.b:GCOL[i%4];
+    var li=el('li',{'class':'r'+(c[3]?' us':'')},ul); li.style.setProperty('--dc',col); li.style.setProperty('--d',(0.5+i*0.03)+'s');
+    el('i',null,li); el('span',{html:c[0]+(c[3]?' <small>(us)</small>':'')},li);
+    var d=el('circle',{'class':'dot',cx:X(c[2]).toFixed(1),cy:Y(c[1]).toFixed(1),r:c[3]?13:9,fill:col,style:'--d:'+(0.6+i*0.05)+'s'},s,1);
+    if (c[3]){
+      el('circle',{'class':'pulse',cx:X(c[2]).toFixed(1),cy:Y(c[1]).toFixed(1),r:16,fill:'none',stroke:GC.b,'stroke-width':'3'},s,1);
+      el('text',{'class':'here',x:X(c[2])+26,y:Y(c[1])-16,text:'GDG Venezia'},s,1);
+    }
+  });
+  el('text',{x:550,y:750,'text-anchor':'end','font-size':'18',style:'fill:var(--dim)',text:'Schematic, not to scale'},s,1);
+})();
+
+/* ============ kinetic split + odometers ============ */
+$$('.k').forEach(function(k){
+  var idx=0;
+  (function walk(node){
+    Array.prototype.slice.call(node.childNodes).forEach(function(n){
+      if (n.nodeType===3){
+        var frag=document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(function(word){
+          if (!word) return;
+          if (/^\s+$/.test(word)){ frag.appendChild(document.createTextNode(' ')); return; }
+          var w=el('span',{'class':'w'},frag);
+          Array.prototype.forEach.call(word,function(ch){ var c=el('span',{'class':'c',text:ch},w); c.style.setProperty('--d',(0.12+idx*0.028)+'s'); idx++; });
+        });
+        n.parentNode.replaceChild(frag,n);
+      } else if (n.nodeType===1 && n.tagName!=='BR' && !n.classList.contains('c')) walk(n);
+    });
+  })(k);
+});
+function buildOdo(o){
+  var to=String(o.dataset.to), n=+o.dataset.digits||to.length;
+  o.innerHTML=''; o._st=[]; o._n=n; o._v=0;
+  for (var i=0;i<n;i++){
+    var dg=el('span',{'class':'dg'},o), st=el('span',{'class':'st'},dg);
+    for (var k=0;k<30;k++) el('span',{text:String(k%10)},st);
+    o._st.push(st);
+  }
+  if (o.dataset.suf) el('span',{text:o.dataset.suf},o);
+}
+function setOdo(o, v, from, delay, dur){
+  var n=o._n, s=String(v).padStart(n,'0'), f=String(from==null?o._v:from).padStart(n,'0');
+  dur = REDUCED ? 0.01 : (dur||1.9);
+  o._st.forEach(function(st,i){ st.style.transition='none'; st.style.transform='translateY('+(-(+f[i]))+'em)'; });
+  o.offsetWidth;
+  o._st.forEach(function(st,i){
+    st.style.transition='transform '+(dur+i*0.3)+'s cubic-bezier(.16,1,.3,1) '+((delay||0)+i*0.06)+'s';
+    st.style.transform='translateY('+(-(+s[i]+ (s[i]===f[i] && from!=null && v===o._v ? 0 : (i===n-1?20:10))))+'em)';
+  });
+  o._v=v;
+}
+$$('.odo').forEach(buildOdo);
+
+/* ============ WebGL lagoon ============ */
+var GL = (function(){
+  var canvas=$('#gl');
+  var renderer=new THREE.WebGLRenderer({canvas:canvas, antialias:true, powerPreference:'high-performance'});
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 1.5));
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(42, innerWidth/innerHeight, 0.5, 5000);
+  var U={uTime:{value:0}, uLight:{value:document.documentElement.getAttribute('data-theme')==='light'?1:0}};
+  var SKY = [
+    'uniform float uLight;',
+    'vec3 skyCol(vec3 d){',
+    '  float h=d.y;',
+    '  vec3 zen=vec3(0.006,0.018,0.055); vec3 hor=vec3(0.05,0.11,0.24);',
+    '  vec3 c=mix(hor,zen,smoothstep(-0.02,0.42,h));',
+    '  c+=vec3(0.09,0.15,0.30)*exp(-abs(h)*26.0)*0.75;',
+    '  c+=vec3(0.16,0.08,0.20)*exp(-abs(h)*60.0)*0.25*smoothstep(-0.6,0.6,d.x);',
+    '  vec3 cl=mix(vec3(0.95,0.96,0.98),vec3(0.80,0.86,0.94),smoothstep(-0.02,0.5,h));',
+    '  return mix(c,cl,uLight);',
+    '}',
+    'float hash21(vec2 p){ return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453); }'
+  ].join('\n');
+
+  // --- sky dome
+  var sky=new THREE.Mesh(new THREE.SphereGeometry(3000,48,24), new THREE.ShaderMaterial({
+    uniforms:U, side:THREE.BackSide, depthWrite:false, depthTest:false,
+    vertexShader:'varying vec3 vD; void main(){ vD=position; vec4 p=projectionMatrix*modelViewMatrix*vec4(position,1.0); gl_Position=p.xyww; }',
+    fragmentShader:'uniform float uTime; varying vec3 vD;\n'+SKY+'\nvoid main(){ vec3 d=normalize(vD); vec3 c=skyCol(d);'+
+      ' vec2 sp=vec2(atan(d.z,d.x)*190.0, d.y*320.0); vec2 cl=floor(sp); float r=hash21(cl);'+
+      ' if(r>0.9935){ float s=smoothstep(0.32,0.0,length(fract(sp)-0.5)); c+=vec3(0.75,0.85,1.0)*s*(0.55+0.45*sin(uTime*1.7+r*80.0))*smoothstep(0.06,0.5,d.y)*(1.0-uLight); }'+
+      ' gl_FragColor=vec4(c,1.0); }'
+  }));
+  sky.renderOrder=-10; scene.add(sky);
+
+  // --- lamps (bricole lights): 16 shader slots, 8 in use
+  var NL=16, lampPos=[], lampCol=[], lamps=[];
+  for (var i=0;i<NL;i++){ lampPos.push(new THREE.Vector3(0,-100,0)); lampCol.push(new THREE.Vector3()); lamps.push({c:new THREE.Color(0), k:0, target:0, on:false}); }
+  var ripple=new THREE.Vector4(0,-60,-100,0);
+  var WU={uTime:U.uTime, uLight:U.uLight, uLampPos:{value:lampPos}, uLampCol:{value:lampCol}, uRip:{value:ripple}};
+  var water=new THREE.Mesh(new THREE.PlaneGeometry(6000,6000,1,1), new THREE.ShaderMaterial({
+    uniforms:WU,
+    vertexShader:'varying vec3 vW; void main(){ vec4 w=modelMatrix*vec4(position,1.0); vW=w.xyz; gl_Position=projectionMatrix*viewMatrix*w; }',
+    fragmentShader:[
+      'precision highp float;',
+      'uniform float uTime; uniform vec3 uLampPos[16]; uniform vec3 uLampCol[16]; uniform vec4 uRip; varying vec3 vW;',
+      SKY,
+      'void wv(inout vec2 g, vec2 p, vec2 d, float f, float a, float s){ d=normalize(d); float ph=dot(d,p)*f+uTime*s; g+=d*(a*f*cos(ph)); }',
+      'void main(){',
+      '  vec3 toC=cameraPosition-vW; float dist=length(toC); vec3 V=toC/dist;',
+      '  vec2 g=vec2(0.0); vec2 p=vW.xz;',
+      '  wv(g,p,vec2(1.0,0.25),0.19,0.34,0.8); wv(g,p,vec2(-0.35,1.0),0.33,0.17,1.2); wv(g,p,vec2(0.7,-0.6),0.81,0.065,2.0);',
+      '  wv(g,p,vec2(-0.9,-0.2),1.63,0.028,2.8); wv(g,p,vec2(0.2,0.95),3.2,0.011,3.6); wv(g,p,vec2(0.65,0.7),5.7,0.0055,4.4);',
+      '  g*=1.0/(1.0+dist*0.0035);',
+      '  vec2 rd=p-uRip.xy; float rl=length(rd); float age=uTime-uRip.z;',
+      '  if(age>0.0 && age<9.0){ float R=age*26.0; float ring=exp(-pow((rl-R)*0.09,2.0))*uRip.w*exp(-age*0.5); g+=(rd/(rl+0.001))*ring*sin(rl*0.7-age*8.0)*0.55; }',
+      '  vec3 N=normalize(vec3(-g.x,1.0,-g.y));',
+      '  vec3 Rv=reflect(-V,N); Rv.y=abs(Rv.y);',
+      '  float fres=0.02+0.98*pow(1.0-max(dot(V,N),0.0),5.0);',
+      '  vec3 col=mix(mix(vec3(0.003,0.012,0.032),vec3(0.72,0.78,0.87),uLight), skyCol(Rv), fres);',
+      '  for(int i=0;i<16;i++){',
+      '    vec3 lc=uLampCol[i]*(1.0-0.7*uLight); if(lc.x+lc.y+lc.z<0.001) continue;',
+      '    vec3 L=uLampPos[i]-vW; float ld=length(L); L/=ld;',
+      '    float s=max(dot(Rv,L),0.0);',
+      '    col+=lc*(pow(s,1500.0)*5.0+pow(s,70.0)*0.22);',
+      '    vec2 dx=p-uLampPos[i].xz; col+=lc*0.22/(1.0+dot(dx,dx)*0.03);',
+      '  }',
+      '  vec3 fc=skyCol(normalize(vec3(-V.x,0.0,-V.z)));',
+      '  col=mix(col,fc,1.0-exp(-dist*0.0019));',
+      '  gl_FragColor=vec4(col,1.0);',
+      '}'].join('\n')
+  }));
+  water.rotation.x=-Math.PI/2; water.renderOrder=0; scene.add(water);
+
+  // --- geometry merge helper (positions only)
+  function merge(list){
+    var arrs=[], tot=0;
+    list.forEach(function(it){ var g=it[0].index?it[0].toNonIndexed():it[0].clone(); g.applyMatrix4(it[1]); arrs.push(g.attributes.position.array); tot+=g.attributes.position.array.length; });
+    var out=new Float32Array(tot), o=0; arrs.forEach(function(a){out.set(a,o);o+=a.length;});
+    var geo=new THREE.BufferGeometry(); geo.setAttribute('position',new THREE.BufferAttribute(out,3)); return geo;
+  }
+  var M=function(x,y,z,sx,sy,sz,ry){ var m=new THREE.Matrix4(); m.compose(new THREE.Vector3(x,y,z), new THREE.Quaternion().setFromEuler(new THREE.Euler(0,ry||0,0)), new THREE.Vector3(sx||1,sy||1,sz||1)); return m; };
+  var rnd=(function(s){return function(){ s=(s*16807)%2147483647; return (s-1)/2147483646; };})(42);
+
+  // --- Venice skyline silhouette on the horizon (with a mirrored reflection)
+  var parts=[], win=[], winCol=[];
+  var BOX=new THREE.BoxGeometry(1,1,1), SPH=new THREE.SphereGeometry(1,16,10,0,Math.PI*2,0,Math.PI/2), CONE=new THREE.ConeGeometry(1,1,4);
+  var SZ=-820;
+  for (var x=-1300;x<1300;){
+    var w=14+rnd()*34, h=8+rnd()*16, z=SZ+rnd()*40;
+    parts.push([BOX, M(x+w/2,h/2,z,w,h,10)]);
+    for (var k=0;k<Math.floor(w/5);k++){ if (rnd()<0.42){ win.push(x+3+k*5+rnd(), 2+rnd()*(h-3), z+5.2); var cc=rnd()<0.75?[1,.78,.5]:new THREE.Color(GCOL[Math.floor(rnd()*4)]).toArray(); winCol.push(cc[0],cc[1],cc[2]); } }
+    var r=rnd();
+    if (r<0.12){ // campanile
+      var ch=48+rnd()*30; parts.push([BOX,M(x+w/2,ch/2,z,6,ch,6)]); parts.push([CONE,M(x+w/2,ch+7,z,4.6,14,4.6,Math.PI/4)]);
+      win.push(x+w/2, ch-6, z+3.2); winCol.push(1,.85,.6);
+    } else if (r<0.2){ // dome
+      var dr=10+rnd()*8; parts.push([BOX,M(x+w/2,h+dr*0.4,z,dr*1.6,dr*0.8,dr*1.6)]); parts.push([SPH,M(x+w/2,h+dr*0.8,z,dr*0.85,dr*0.95,dr*0.85)]);
+      parts.push([BOX,M(x+w/2,h+dr*1.9,z,1.4,6,1.4)]);
+    }
+    x+=w+(rnd()<0.18?20+rnd()*50:0);
+  }
+  var skyGeo=merge(parts);
+  var silMat=function(refl){ return new THREE.ShaderMaterial({uniforms:U, transparent:!!refl, depthTest:!refl, depthWrite:!refl,
+    vertexShader:'uniform float uTime; varying float vY; void main(){ vec4 w=modelMatrix*vec4(position,1.0); vY=w.y; '+(refl?'w.y=-w.y; w.x+=sin(w.y*0.5+uTime*1.3)*1.4;':'')+' gl_Position=projectionMatrix*viewMatrix*w; }',
+    fragmentShader:'uniform float uLight; varying float vY; void main(){ vec3 c=mix(vec3(0.025,0.05,0.11),vec3(0.008,0.02,0.05),smoothstep(0.0,60.0,vY)); c=mix(c,mix(vec3(0.62,0.68,0.78),vec3(0.52,0.59,0.71),smoothstep(0.0,60.0,vY)),uLight); gl_FragColor=vec4(c,'+(refl?'0.55*smoothstep(80.0,0.0,vY)':'1.0')+'); }'
+  }); };
+  var skyline=new THREE.Mesh(skyGeo, silMat(false)); skyline.renderOrder=3; scene.add(skyline);
+  var skylineR=new THREE.Mesh(skyGeo, silMat(true)); skylineR.renderOrder=1; scene.add(skylineR);
+
+  function makePoints(pos, col, size, refl, flick){
+    var g=new THREE.BufferGeometry();
+    g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(pos),3));
+    g.setAttribute('aCol',new THREE.BufferAttribute(new Float32Array(col),3));
+    var mat=new THREE.ShaderMaterial({uniforms:{uTime:U.uTime,uLight:U.uLight,uScale:{value:600},uSize:{value:size}},transparent:true,depthWrite:false,depthTest:!refl,blending:U.uLight.value?THREE.NormalBlending:THREE.AdditiveBlending,
+      vertexShader:'uniform float uTime,uScale,uSize; attribute vec3 aCol; varying vec3 vC; varying float vA;'+
+        'float h(float n){return fract(sin(n)*43758.5453);}'+
+        'void main(){ vec4 w=modelMatrix*vec4(position,1.0); float id=position.x*1.7+position.y*3.1; vA=1.0;'+
+        (flick?' vA=0.6+0.4*sin(uTime*(0.6+h(id)*2.0)+h(id+1.0)*30.0);':'')+
+        (refl?' w.y=-w.y; w.x+=sin(w.y*0.8+uTime*2.2+w.x*0.05)*0.9; vA*=0.45;':'')+
+        ' vec4 mv=viewMatrix*w; gl_PointSize=clamp(uSize*uScale/-mv.z,1.0,220.0)'+(refl?'*vec2(1.0,1.0).x':'')+'; gl_Position=projectionMatrix*mv; vC=aCol; }',
+      fragmentShader:'uniform float uLight; varying vec3 vC; varying float vA; void main(){ vec2 c=gl_PointCoord-0.5; float d=length(c); float a=smoothstep(0.5,0.0,d); a*=a; float core=smoothstep(0.12,0.0,d); gl_FragColor=mix(vec4((vC*a+vec3(core)*0.9)*vA, a*vA), vec4(vC*0.8, a*vA*0.6), uLight); }'
+    });
+    var p=new THREE.Points(g,mat); p.renderOrder=refl?2:4; p.frustumCulled=false; scene.add(p); return p;
+  }
+  var winPts=makePoints(win,winCol,2.6,false,true);
+  var winPtsR=makePoints(win,winCol,3.2,true,true);
+
+  // --- bricole (mooring poles) carrying the lamps
+  var BR=[[-74,-60],[-58,-150],[-120,-230],[-66,-330],[70,-80],[96,-175],[64,-270],[150,-360]];
+  var poles=[], CYL=new THREE.CylinderGeometry(0.22,0.3,1,6);
+  BR.forEach(function(b,i){
+    [[0,0,0.05],[0.9,0.4,-0.08],[-0.5,0.8,0.12]].forEach(function(o,j){
+      var h=7-j*1.2; var m=new THREE.Matrix4().compose(new THREE.Vector3(b[0]+o[0],h/2-0.6,b[1]+o[1]),new THREE.Quaternion().setFromEuler(new THREE.Euler(o[2],0,-o[2])),new THREE.Vector3(1,h,1));
+      poles.push([CYL,m]);
+    });
+    lampPos[i].set(b[0],7.4,b[1]);
+    lamps[i].c.set(GCOL[i%4]); lamps[i].on=true;
+  });
+  var poleMesh=new THREE.Mesh(merge(poles),new THREE.MeshBasicMaterial({color:U.uLight.value?0x5d6b82:0x02060f})); poleMesh.renderOrder=3; scene.add(poleMesh);
+  // lamp glow sprites follow lampPos
+  var lampGlowPos=new Float32Array(NL*3), lampGlowCol=new Float32Array(NL*3);
+  var lampGeo=new THREE.BufferGeometry();
+  lampGeo.setAttribute('position',new THREE.BufferAttribute(lampGlowPos,3)); lampGeo.setAttribute('aCol',new THREE.BufferAttribute(lampGlowCol,3));
+  var lampPts=makePoints([0,0,0],[0,0,0],9,false,false); lampPts.geometry.dispose(); lampPts.geometry=lampGeo;
+
+  // --- render loop
+  var cam={p:new THREE.Vector3(0,2.4,40), t:new THREE.Vector3(0,2.4,-200)};
+  var tw=null, override=null, frameHooks=[], lastT=0, fpsN=0, fpsT=0, slow=0;
+  window.__fps=0;
+  function resize(){
+    var w=innerWidth,h=innerHeight; renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+    var sc=h*renderer.getPixelRatio()/(2*Math.tan(camera.fov*Math.PI/360));
+    [winPts,winPtsR,lampPts].forEach(function(p){p.material.uniforms.uScale.value=sc/renderer.getPixelRatio();});
+  }
+  window.addEventListener('resize',resize); resize();
+  var paused=false;
+  function loop(now){
+    requestAnimationFrame(loop);
+    var t=now/1000; var dt=Math.min(0.05,t-lastT); lastT=t;
+    fpsN++; if (t-fpsT>1){ window.__fps=fpsN/(t-fpsT); fpsN=0; fpsT=t;
+      // adaptive quality: drop resolution on slow GPUs, never below 0.75x
+      if (!paused && !document.hidden && window.__fps<45 && renderer.getPixelRatio()>0.8){ slow++; if(slow>=2){ renderer.setPixelRatio(Math.max(0.75,renderer.getPixelRatio()-0.25)); resize(); slow=0; } } else slow=0; }
+    if (paused) return;
+    U.uTime.value=t;
+    frameHooks.forEach(function(f){f(t,dt)});
+    if (override) override(t,dt,cam);
+    else if (tw){
+      var k=clamp((t-tw.t0)/tw.dur,0,1), e=easeIO(k);
+      cam.p.lerpVectors(tw.fp,tw.tp,e); cam.t.lerpVectors(tw.ft,tw.tt,e);
+      if (k>=1) tw=null;
+    }
+    var dx=Math.sin(t*0.11)*1.6, dy=Math.sin(t*0.17)*0.25;
+    camera.position.set(cam.p.x+dx, cam.p.y+dy, cam.p.z);
+    camera.lookAt(cam.t.x+dx, cam.t.y+dy, cam.t.z);
+    sky.position.copy(camera.position);
+    // lamps
+    for (var i=0;i<NL;i++){
+      var L=lamps[i]; L.k+=((L.on?1:0)-L.k)*Math.min(1,dt*3.2);
+      var fl=i<8? (0.9+0.1*Math.sin(t*3.1+i*1.7)) : 1;
+      var kk=L.k*fl*(L.boost||1);
+      lampCol[i].set(L.c.r*kk,L.c.g*kk,L.c.b*kk);
+      lampGlowPos[i*3]=lampPos[i].x; lampGlowPos[i*3+1]=lampPos[i].y; lampGlowPos[i*3+2]=lampPos[i].z;
+      lampGlowCol[i*3]=Math.min(1,L.c.r*kk); lampGlowCol[i*3+1]=Math.min(1,L.c.g*kk); lampGlowCol[i*3+2]=Math.min(1,L.c.b*kk);
+    }
+    lampGeo.attributes.position.needsUpdate=true; lampGeo.attributes.aCol.needsUpdate=true;
+    renderer.render(scene,camera);
+  }
+  requestAnimationFrame(loop);
+
+  return {
+    camera:camera, cam:cam, lamps:lamps,
+    fly:function(p,t,dur){ tw={fp:cam.p.clone(),ft:cam.t.clone(),tp:new THREE.Vector3().fromArray(p),tt:new THREE.Vector3().fromArray(t),t0:performance.now()/1000,dur:REDUCED?0.01:(dur||2.2)}; },
+    setOverride:function(f){ override=f; if(!f) tw=null; },
+    ripple:function(x,z,s){ ripple.set(x,z,performance.now()/1000,s||1); },
+    onFrame:function(f){ frameHooks.push(f); },
+    pause:function(v){ paused=v; },
+    setLight:function(on){
+      U.uLight.value=on?1:0;
+      [winPts,winPtsR,lampPts].forEach(function(p){ p.material.blending=on?THREE.NormalBlending:THREE.AdditiveBlending; p.material.needsUpdate=true; });
+      poleMesh.material.color.set(on?0x5d6b82:0x02060f);
+    }
+  };
+})();
+
+/* ============ slide engine ============ */
+var slides=$$('.slide'), cur=-1, notesOn=false, t0=Date.now();
+// pose(camera xyz, target x, horizon height on the 1080 stage)
+function pose(p,tx,hy){ var d=p[2]+200; return {p:p, t:[tx, p[1]+(hy-540)*(Math.tan(21*Math.PI/180)/540)*d, -200]}; }
+var POSES={
+  intro:pose([0,2.4,40],0,540),
+  video:pose([0,3,30],0,600),
+  welcome:pose([-10,5,48],4,800),
+  commit:pose([8,4,36],0,890),
+  ten:pose([0,3,42],0,860),
+  gdg:pose([14,5,44],-8,780),
+  italy:pose([-4,6,52],6,900),
+  alexis:pose([2,3,54],0,680),
+  team:pose([-14,7,40],0,880),
+  rector:pose([0,2.6,56],0,650),
+  luccio:pose([4,2.8,58],0,660),
+  sponsors:pose([16,6,40],2,860),
+  map:{p:[0,26,70],t:[0,-12,-140]},
+  agenda:pose([-8,4,44],0,900),
+  games:pose([-6,3.2,30],0,830),
+  info:pose([10,6,46],0,930),
+  delivery:pose([-6,3.4,40],2,880),
+  tshirt:pose([-12,4,38],4,900),
+  spkfb:pose([4,3,50],0,900),
+  close:pose([0,2.4,40],0,910)
+};
+// assign reveal delays in DOM order
+slides.forEach(function(s){
+  var i=0; $$('.r',s).forEach(function(e){ if(!e.style.getPropertyValue('--d')) e.style.setProperty('--d',(0.35+i*0.12)+'s'); i++; });
+});
+var HOOKS={};
+var hint=$('#hint'), themeBtn=$('#themebtn'); setTimeout(function(){hint.classList.add('gone'); themeBtn.classList.add('gone')},5000);
+// light/dark theme (T key or corner button), remembered in localStorage; default dark
+function setTheme(light){
+  if (light) document.documentElement.setAttribute('data-theme','light'); else document.documentElement.removeAttribute('data-theme');
+  try{ localStorage.setItem('devfest26-theme', light?'light':'dark'); }catch(e){}
+  themeBtn.textContent=light?'◐ Light theme · T':'◐ Dark theme · T';
+  GL.setLight(light);
+}
+function toggleTheme(){ setTheme(document.documentElement.getAttribute('data-theme')!=='light'); }
+themeBtn.addEventListener('click',function(e){ e.stopPropagation(); toggleTheme(); themeBtn.blur(); });
+setTheme(document.documentElement.getAttribute('data-theme')==='light');
+
+function go(i, force){
+  i=clamp(i,0,slides.length-1);
+  if (i===cur && !force) return;
+  var prev=slides[cur];
+  if (prev){ var pid=prev.id; prev.classList.remove('in'); prev.classList.add('out'); setTimeout(function(){ if(slides[cur]!==prev) prev.classList.remove('out'); },700);
+    if (HOOKS[pid] && HOOKS[pid].leave) HOOKS[pid].leave(prev); }
+  var s=slides[i]; cur=i;
+  s.classList.remove('out','in'); s.offsetWidth; s.classList.add('in');
+  var cam=s.dataset.cam; if (POSES[cam]) GL.fly(POSES[cam].p,POSES[cam].t, cam==='intro'&&!prev?0.01:2.4);
+  var fx=GL.cam.p.x, fz=GL.cam.p.z;
+  GL.ripple(fx*0.4, fz-90, 1.0);
+  if (HOOKS[s.id] && HOOKS[s.id].enter) HOOKS[s.id].enter(s);
+  $('#prog').style.width=((i)/(slides.length-1)*100)+'%';
+  $('#prog').style.background=GCOL[i%4];
+  $('#count').textContent=(i+1)+' / '+slides.length;
+  $('#zones').classList.toggle('off', s.id==='s-video');
+  renderNotes();
+  if (history.replaceState) history.replaceState(null,'','#'+(i+1));
+}
+function renderNotes(){
+  var n=$('#notes'); n.classList.toggle('show',notesOn); if(!notesOn) return;
+  var s=slides[cur], nx=slides[cur+1];
+  $('#nt').textContent=($('.notes',s)||{}).textContent||'';
+  var el2=Math.floor((Date.now()-t0)/1000);
+  $('#nmeta').innerHTML='<b>'+Math.floor(el2/60)+':'+String(el2%60).padStart(2,'0')+'</b><br>'+(cur+1)+'/'+slides.length+' · '+s.dataset.title+'<br>Next: '+(nx?nx.dataset.title:'—');
+}
+setInterval(function(){ if(notesOn) renderNotes(); },1000);
+function fullscreen(){
+  var d=document, e=d.documentElement;
+  if (!(d.fullscreenElement||d.webkitFullscreenElement)) (e.requestFullscreen||e.webkitRequestFullscreen).call(e);
+  else (d.exitFullscreen||d.webkitExitFullscreen).call(d);
+}
+document.addEventListener('keydown',function(e){
+  if (e.metaKey||e.ctrlKey||e.altKey) return;
+  var k=e.key;
+  if (k==='ArrowRight'||k===' '||k==='PageDown'){ go(cur+1); e.preventDefault(); }
+  else if (k==='ArrowLeft'||k==='PageUp'){ go(cur-1); e.preventDefault(); }
+  else if (k==='Home') go(0); else if (k==='End') go(slides.length-1);
+  else if (k==='n'||k==='N'){ notesOn=!notesOn; renderNotes(); }
+  else if (k==='f'||k==='F') fullscreen();
+  else if (k==='r'||k==='R') go(cur,true);
+  else if (k==='t'||k==='T') toggleTheme();
+  else if ((k==='p'||k==='P'||k==='Enter') && slides[cur].id==='s-video'){ toggleVid(); e.preventDefault(); }
+});
+$('#z-prev').addEventListener('click',function(){go(cur-1)});
+$('#z-next').addEventListener('click',function(){go(cur+1)});
+
+// stage scale
+var stage=$('#stage'), SC=1;
+function fit(){ SC=Math.min(innerWidth/1920,innerHeight/1080); stage.style.transform='scale('+SC+')'; }
+window.addEventListener('resize',fit); fit();
+
+/* ---- intro: lamps light up one by one ---- */
+HOOKS['s-intro']={enter:function(){
+  GL.lamps.forEach(function(L,i){ if(i<8){ L.on=false; L.k=0; setTimeout(function(){ if(slides[cur].id==='s-intro'||cur>0) L.on=true; }, 900+i*260); } });
+}};
+
+/* ---- video ---- */
+var vid=$('#vid'), vplay=$('#vplay'), vbar=$('#vbar');
+vid.addEventListener('error',function(){ $('#vfallback').classList.add('show'); vplay.classList.add('hide'); });
+vid.addEventListener('play',function(){ vplay.classList.add('hide'); GL.pause(true); });
+vid.addEventListener('pause',function(){ vplay.classList.remove('hide'); GL.pause(false); });
+vid.addEventListener('ended',function(){ vplay.classList.remove('hide'); GL.pause(false); });
+vid.addEventListener('timeupdate',function(){ vbar.style.width=(vid.currentTime/(vid.duration||1)*100)+'%'; });
+function toggleVid(){ if (vid.paused) vid.play().catch(function(){}); else vid.pause(); }
+vplay.addEventListener('click',toggleVid); vid.addEventListener('click',toggleVid);
+HOOKS['s-video']={
+  enter:function(){ setTimeout(function(){ if (slides[cur].id==='s-video' && !window.__noAutoplay) vid.play().catch(function(){}); },1300); },
+  leave:function(){ vid.pause(); GL.pause(false); }
+};
+
+/* ---- welcome counters ---- */
+HOOKS['s-ten']={enter:function(s){ $$('.odo',s).forEach(function(o){ setOdo(o,+o.dataset.to,0,0.7,2.2); }); }};
+HOOKS['s-welcome']={enter:function(s){ $$('.odo',s).forEach(function(o,i){ setOdo(o,+o.dataset.to,0,0.6+i*0.12, i===0?2.6:1.8); }); }};
+
+/* ---- Commit graph ---- */
+var Commit=(function(){
+  var svg=$('#cg-svg'), raf=0, start=0;
+  var Y=600, X=function(y){return 190+(y-2017)*170}, R=function(p){return 12+Math.sqrt(p)*1.25};
+  function fakeHash(s){ var h=2166136261; for(var i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return ('0000000'+(h>>>0).toString(16)).slice(-7); }
+  var MSG=['init: DevFest1 Veneto','feat: DevFest Veneto','feat: DevFest Veneto','rename: DevFest Triveneto','rename: DevFest Venezia','feat: DevFest Venezia','feat: DevFest Venezia','release: DevFest Venezia 2026'];
+  var defs, nodes=[], main, gap, head, typed=$('#cg-type'), odo=$('#cg-odo'), lab=$('#cg-l');
+  function build(){
+    svg.innerHTML='';
+    defs=el('defs',null,svg,1);
+    var lg=el('linearGradient',{id:'cgg',gradientUnits:'userSpaceOnUse',x1:X(2017),x2:X(2026),y1:0,y2:0},defs,1);
+    [['0',GC.r],['.33',GC.b],['.66',GC.g],['1',GC.y]].forEach(function(o){el('stop',{offset:o[0],'stop-color':o[1]},lg,1)});
+    // faint year rail
+    for (var yr=2017; yr<=2026; yr++) el('line',{x1:X(yr),y1:Y-260,x2:X(yr),y2:Y+250,style:'stroke:var(--hair)','stroke-width':'1'},svg,1);
+    var pts=EDITIONS.map(function(e){return [X(e.year),Y]});
+    var d1='M'+pts[0][0]+' '+Y+' L'+pts[2][0]+' '+Y, d2='M'+pts[2][0]+' '+Y+' L'+pts[3][0]+' '+Y, d3='M'+pts[3][0]+' '+Y+' L'+pts[7][0]+' '+Y;
+    main=[el('path',{d:d1,stroke:'url(#cgg)','stroke-width':'8',fill:'none','stroke-linecap':'round',filter:'url(#glow)'},svg,1),
+          el('path',{d:d3,stroke:'url(#cgg)','stroke-width':'8',fill:'none','stroke-linecap':'round',filter:'url(#glow)'},svg,1)];
+    gap=el('path',{d:d2,style:'stroke:var(--rule)','stroke-width':'4',fill:'none','stroke-dasharray':'4 14','stroke-linecap':'round'},svg,1);
+    var gl=el('text',{x:(pts[2][0]+pts[3][0])/2,y:Y+50,'text-anchor':'middle',style:'fill:var(--dim)','font-size':'22',text:'2020 – 2021'},svg,1);
+    main.concat([gap]).forEach(function(p){ var L=p.getTotalLength(); p._L=L; p.style.strokeDasharray=p===gap?'4 14':L+' '+L; if(p!==gap) p.style.strokeDashoffset=L; else p.style.opacity=0; });
+    gl._g=true; gap._label=gl; gl.style.opacity=0;
+    EDITIONS.forEach(function(e,i){
+      var x=X(e.year), r=R(e.sz||e.p), c=GCOL[i%4], ct='var(--t'+'bryg'[i%4]+')', up=i%2===0;
+      var g=el('g',{opacity:'0'},svg,1);
+      var shock=el('circle',{cx:x,cy:Y,r:r,fill:'none',stroke:c,'stroke-width':'3'},g,1);
+      var dot=el('circle',{cx:x,cy:Y,r:r,style:'fill:var(--node)',stroke:c,'stroke-width':'7'},g,1);
+      el('circle',{cx:x,cy:Y,r:r*0.38,fill:c},g,1);
+      var yH=up? Y-r-118 : Y+r+70;
+      var t1=el('text',{'class':'hash',x:x,y:yH,'text-anchor':'middle',style:'fill:'+ct,text:fakeHash('devfest'+e.year)},g,1);
+      el('text',{x:x,y:yH+40,'text-anchor':'middle',style:'fill:var(--ink)','font-size':'26','font-weight':'650',text:String(e.year)},g,1);
+      var m=el('text',{x:x,y:yH+74,'text-anchor':'middle',style:'fill:var(--mist)','font-size':'19','font-family':'JBM, monospace',text:MSG[i]},g,1);
+      el('line',{x1:x,y1:up?yH+86:Y+r+6,x2:x,y2:up?Y-r-6:yH-30,stroke:c,'stroke-width':'1.5',opacity:'.5'},g,1);
+      if (e.p) el('text',{x:x,y:up?yH-36:yH+112,'text-anchor':'middle',style:'fill:var(--ink)','font-size':'23','font-weight':'500',text:e.p+'+ people'},g,1);
+      if (i===7){
+        var tg=el('g',null,g,1);
+        el('rect',{x:x-96,y:yH+132,width:192,height:40,rx:20,fill:'rgba(52,168,83,.18)',stroke:GC.g,'stroke-width':'2'},tg,1);
+        el('text',{x:x,y:yH+159,'text-anchor':'middle',style:'fill:var(--tg)','font-size':'20','font-family':'JBM, monospace',text:'HEAD → main'},tg,1);
+      }
+      nodes.push({g:g,dot:dot,shock:shock,x:x,r:r});
+    });
+    head=el('circle',{r:9,style:'fill:var(--ink)',filter:'url(#glow)',opacity:'0'},svg,1);
+  }
+  build();
+  var T0=0.9, D=1.25;
+  var CMD='git log --graph --reverse devfest-venezia';
+  function frame(){
+    raf=requestAnimationFrame(frame);
+    var t=performance.now()/1000-start;
+    typed.textContent='$ '+CMD.slice(0,Math.floor(clamp(t*40,0,CMD.length)));
+    var prog=clamp((t-T0)/D,0,7.999); // 0..8 node index space
+    // draw lines: node0->node2 on main[0], gap 2->3, main[1] 3->7
+    var a=clamp(prog/2,0,1), b=clamp(prog-2,0,1), c=clamp((prog-3)/4,0,1);
+    if (t<T0){a=0;}
+    main[0].style.strokeDashoffset=main[0]._L*(1-a);
+    gap.style.opacity=b; gap._label.style.opacity=b;
+    main[1].style.strokeDashoffset=main[1]._L*(1-c);
+    var hx = prog<=2? nodes[0].x+(nodes[2].x-nodes[0].x)*a : prog<=3? nodes[2].x+(nodes[3].x-nodes[2].x)*b : nodes[3].x+(nodes[7].x-nodes[3].x)*c;
+    head.setAttribute('cx',hx); head.setAttribute('cy',Y); head.setAttribute('opacity', t>T0 && prog<7.95 ? 1 : 0);
+    nodes.forEach(function(n,i){
+      var ti=T0+i*D, k=clamp((t-ti)/0.7,0,1);
+      if (i===0) k=clamp((t-T0+0.2)/0.7,0,1);
+      n.g.setAttribute('opacity',Math.min(1,k*1.6));
+      var s=easeBack(k); n.dot.setAttribute('r',Math.max(0.01,n.r*s));
+      var sk=clamp((t-ti)/1.2,0,1); n.shock.setAttribute('r',n.r+sk*70); n.shock.setAttribute('opacity',(1-sk)*0.8*(k>0?1:0));
+      if (k>0 && !n.fired){ n.fired=true; if (EDITIONS[i].p){ setOdo(odo,EDITIONS[i].p, i?EDITIONS[i-1].p:100,0,1.0); lab.textContent='people in '+EDITIONS[i].year; }
+        GL.ripple((i-3.5)*14, -80, 0.8); }
+    });
+    if (t>T0+8*D+2) { cancelAnimationFrame(raf); raf=0; }
+  }
+  return {
+    start:function(){ if(raf) cancelAnimationFrame(raf); nodes.forEach(function(n){n.fired=false}); setOdo(odo,100,100,0,0.01); lab.textContent='people'; start=performance.now()/1000; frame(); },
+    stop:function(){ if(raf) cancelAnimationFrame(raf); raf=0; }
+  };
+})();
+HOOKS['s-commit']={enter:function(){Commit.start()}, leave:function(){Commit.stop()}};
+
+/* ---- games: typing race, water beats ---- */
+var Games=(function(){
+  var iv=[], type=$('#type');
+  var TXT='the quick brown fox jumps over the lazy dog while the lagoon keeps time';
+  function clear(){ iv.forEach(clearInterval); iv=[]; GL.lamps.forEach(function(L){L.boost=1}); }
+  return {start:function(){
+    clear();
+    var c=0; iv.push(setInterval(function(){ c=(c+1)%(TXT.length+18); var n=Math.min(c,TXT.length); var st=Math.max(0,n-34);
+      type.innerHTML='<b>'+TXT.slice(st,n)+'</b><i></i>'+TXT.slice(n,n+40); },85));
+    var beat=0; iv.push(setInterval(function(){ beat++; GL.ripple((Math.random()-0.5)*80,-50-Math.random()*90,1.3);
+      GL.lamps.forEach(function(L,i){ L.boost= (i%4===beat%4)? 2.6 : 0.8; }); },600));
+  }, stop:clear};
+})();
+HOOKS['s-games']={enter:function(){Games.start()}, leave:function(){Games.stop()}};
+
+/* ---- boot ---- */
+var startAt = parseInt((location.hash||'').slice(1),10);
+document.fonts && document.fonts.ready ? document.fonts.ready.then(function(){ go(isNaN(startAt)?0:startAt-1); }) : go(0);
+window.deck={go:go, get cur(){return cur}, count:slides.length, setTheme:setTheme};
+})();
+</script>
+</body>
+</html>
